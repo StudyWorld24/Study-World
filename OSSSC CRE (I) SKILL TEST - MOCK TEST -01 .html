@@ -1,0 +1,3872 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>OSSSC CRE (I) 2025 Computer Skill Test (Mock Test - 1) | TCS iON Simulator — Study World</title>
+<style>
+  /* ================= RESET & BASE ================= */
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body {
+    height: 100%;
+    font-family: Arial, "Segoe UI", Tahoma, Helvetica, sans-serif;
+    font-size: 14px;
+    color: #222222;
+    background: #f4f6f8;
+    line-height: 1.45;
+  }
+  button { font-family: inherit; cursor: pointer; }
+  input, select, textarea { font-family: inherit; }
+
+  /* ================= OFFICIAL TCS iON COLORS ================= */
+  :root {
+    --tcs-blue: #2c6693;
+    --tcs-blue-dark: #1f4d70;
+    --tcs-subbar: #d9edf7;
+    --tcs-subbar-border: #bce8f1;
+    --tcs-subbar-text: #1c5577;
+    --tcs-sidebar-bg: #e5f6fd;
+    --tcs-sidebar-border: #b8d8e6;
+    --tcs-tab-active: #2e75b6;
+    --tcs-btn-blue: #337ab7;
+    --tcs-btn-blue-hover: #245a8a;
+    --tcs-teal: #00897b;
+    --tcs-teal-hover: #00695c;
+    --tcs-orange: #f57c00;
+    --tcs-green: #4caf50;
+    --tcs-green-dark: #2e7d32;
+    --tcs-red: #e53935;
+    --tcs-purple: #673ab7;
+    --tcs-grey: #e6e6e6;
+  }
+
+  /* ================= LAYOUT HELPERS ================= */
+  .hidden { display: none !important; }
+  .screen {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    width: 100%;
+  }
+  .screen-fixed {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    overflow: hidden;
+  }
+
+  /* ================= TOP TCS HEADER ================= */
+  .tcs-header {
+    background: var(--tcs-blue);
+    color: #ffffff;
+    height: 46px;
+    padding: 0 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-shrink: 0;
+    border-bottom: 2px solid var(--tcs-blue-dark);
+    user-select: none;
+  }
+  .tcs-header-left {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    min-width: 0;
+  }
+  .tcs-logo-badge {
+    background: #ffffff;
+    color: var(--tcs-blue);
+    font-weight: 800;
+    font-size: 12px;
+    padding: 3px 8px;
+    border-radius: 3px;
+    letter-spacing: 0.4px;
+    white-space: nowrap;
+  }
+  .tcs-exam-title {
+    font-size: 15px;
+    font-weight: 700;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .tcs-brand-tag {
+    font-size: 11px;
+    background: rgba(255,255,255,0.16);
+    padding: 2px 8px;
+    border-radius: 10px;
+    white-space: nowrap;
+    color: #e6f4ff;
+  }
+  .tcs-header-right {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-shrink: 0;
+  }
+  .header-action-btn {
+    background: rgba(255,255,255,0.14);
+    color: #ffffff;
+    border: 1px solid rgba(255,255,255,0.35);
+    padding: 4px 10px;
+    font-size: 12px;
+    font-weight: 600;
+    border-radius: 3px;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    transition: background 0.15s;
+  }
+  .header-action-btn:hover { background: rgba(255,255,255,0.26); }
+
+  /* ================= SUB-BAR ================= */
+  .tcs-subbar {
+    background: var(--tcs-subbar);
+    color: var(--tcs-subbar-text);
+    border-bottom: 1px solid var(--tcs-subbar-border);
+    padding: 7px 16px;
+    font-size: 15px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-shrink: 0;
+  }
+
+  /* ================= OFFICIAL 5 TCS PALETTE SYMBOLS ================= */
+  .sym {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 29px;
+    font-size: 12px;
+    font-weight: 700;
+    position: relative;
+    flex-shrink: 0;
+    user-select: none;
+  }
+  .sym-sm {
+    width: 26px;
+    height: 24px;
+    font-size: 11px;
+  }
+  /* 1. Not Visited: Grey Square */
+  .sym-not-visited {
+    background: #ededed;
+    color: #333333;
+    border: 1px solid #9e9e9e;
+    border-radius: 3px;
+    box-shadow: inset 0 1px 0 #ffffff;
+  }
+  /* 2. Not Answered: Red Downward Shield / Polygon */
+  .sym-not-answered {
+    background: linear-gradient(180deg, #ef5350 0%, #c62828 100%);
+    color: #ffffff;
+    clip-path: polygon(0% 0%, 100% 0%, 100% 72%, 50% 100%, 0% 72%);
+    padding-bottom: 3px;
+  }
+  /* 3. Answered: Green Upward Shield / Polygon */
+  .sym-answered {
+    background: linear-gradient(180deg, #66bb6a 0%, #2e7d32 100%);
+    color: #ffffff;
+    clip-path: polygon(50% 0%, 100% 28%, 100% 100%, 0% 100%, 0% 28%);
+    padding-top: 3px;
+  }
+  /* 4. Marked for Review: Purple Circle */
+  .sym-marked {
+    background: radial-gradient(circle at 35% 30%, #8e54c7, #5e2a8c);
+    color: #ffffff;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+  }
+  .sym-sm.sym-marked { width: 25px; height: 25px; }
+  /* 5. Answered & Marked for Review: Purple Circle with Green Dot */
+  .sym-ans-marked-wrap {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 30px;
+    flex-shrink: 0;
+  }
+  .sym-sm-wrap {
+    width: 26px;
+    height: 25px;
+  }
+  .sym-ans-marked {
+    background: radial-gradient(circle at 35% 30%, #8e54c7, #5e2a8c);
+    color: #ffffff;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: 700;
+  }
+  .sym-sm-wrap .sym-ans-marked {
+    width: 25px;
+    height: 25px;
+    font-size: 11px;
+  }
+  .sym-green-dot {
+    position: absolute;
+    right: -1px;
+    bottom: -1px;
+    width: 12px;
+    height: 12px;
+    background: #2e7d32;
+    border: 1.5px solid #ffffff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #ffffff;
+    font-size: 8px;
+    font-weight: 900;
+    line-height: 1;
+  }
+  .sym-sm-wrap .sym-green-dot {
+    width: 10px;
+    height: 10px;
+    font-size: 7px;
+  }
+
+  /* ================= SCREEN 1A & 1B LAYOUT ================= */
+  .inst-main-wrap {
+    display: flex;
+    flex: 1;
+    min-height: 0;
+    overflow: hidden;
+  }
+  .inst-left-col {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    background: #ffffff;
+  }
+  .inst-scroll-body {
+    flex: 1;
+    overflow-y: auto;
+    padding: 18px 24px 28px;
+  }
+  .inst-right-sidebar {
+    width: 245px;
+    background: #f8fbfd;
+    border-left: 1px solid #cfdce6;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 24px 16px;
+    flex-shrink: 0;
+    text-align: center;
+  }
+  .profile-avatar-lg {
+    width: 96px;
+    height: 96px;
+    border-radius: 4px;
+    border: 2px solid #b8d0e0;
+    background: #eaf3f9;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 12px;
+    overflow: hidden;
+  }
+  .profile-name-lg {
+    font-size: 16px;
+    font-weight: 700;
+    color: #1c3d5a;
+    margin-bottom: 5px;
+    word-break: break-word;
+  }
+  .profile-id-pill {
+    display: inline-block;
+    background: #e1f0fa;
+    color: #164b70;
+    border: 1px solid #9ec4df;
+    font-family: "Courier New", Consolas, monospace;
+    font-weight: 700;
+    font-size: 13px;
+    padding: 4px 10px;
+    border-radius: 3px;
+    margin-bottom: 10px;
+  }
+  .profile-meta-small {
+    font-size: 12px;
+    color: #546e7a;
+    line-height: 1.5;
+  }
+
+  /* ================= CANDIDATE REGISTRATION BOX ================= */
+  .reg-box {
+    background: #f0f7fc;
+    border: 1.5px solid #8eb8d6;
+    border-left: 5px solid var(--tcs-blue);
+    border-radius: 4px;
+    padding: 14px 16px;
+    margin-bottom: 18px;
+  }
+  .reg-box-title {
+    font-size: 14px;
+    font-weight: 700;
+    color: #16476b;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .reg-grid {
+    display: grid;
+    grid-template-columns: 1.2fr 1.2fr;
+    gap: 14px;
+    align-items: end;
+  }
+  .reg-field label {
+    display: block;
+    font-size: 12px;
+    font-weight: 700;
+    color: #355268;
+    margin-bottom: 4px;
+  }
+  .reg-input {
+    width: 100%;
+    padding: 8px 10px;
+    border: 1px solid #9cb8cc;
+    border-radius: 3px;
+    font-size: 14px;
+    background: #ffffff;
+    color: #111111;
+  }
+  .reg-input:focus {
+    outline: none;
+    border-color: var(--tcs-blue);
+    box-shadow: 0 0 0 2px rgba(44, 102, 147, 0.18);
+  }
+  .id-display-row {
+    display: flex;
+    align-items: stretch;
+    gap: 6px;
+  }
+  .id-code-box {
+    flex: 1;
+    background: #ffffff;
+    border: 1px solid #9cb8cc;
+    border-radius: 3px;
+    padding: 7px 10px;
+    font-family: "Courier New", Consolas, monospace;
+    font-size: 15px;
+    font-weight: 700;
+    color: #124366;
+    letter-spacing: 0.5px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .btn-copy-id {
+    background: var(--tcs-blue);
+    color: #ffffff;
+    border: none;
+    border-radius: 3px;
+    padding: 0 12px;
+    font-size: 12px;
+    font-weight: 700;
+    white-space: nowrap;
+    transition: background 0.15s;
+  }
+  .btn-copy-id:hover { background: var(--tcs-blue-dark); }
+  .btn-copy-id.copied { background: #2e7d32; }
+  .btn-regen-id {
+    background: #ffffff;
+    color: #2c6693;
+    border: 1px solid #9cb8cc;
+    border-radius: 3px;
+    padding: 0 9px;
+    font-size: 12px;
+    font-weight: 700;
+  }
+  .btn-regen-id:hover { background: #e3f0f9; }
+
+  .load-id-bar {
+    margin-top: 12px;
+    padding-top: 10px;
+    border-top: 1px dashed #b4d0e4;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+  }
+  .load-id-label {
+    font-size: 12px;
+    font-weight: 700;
+    color: #2c5270;
+  }
+  .load-id-input {
+    padding: 6px 9px;
+    border: 1px solid #9cb8cc;
+    border-radius: 3px;
+    font-family: "Courier New", Consolas, monospace;
+    font-size: 13px;
+    width: 195px;
+    text-transform: uppercase;
+    background: #ffffff;
+  }
+  .btn-load-id {
+    background: #ffffff;
+    color: #1c5577;
+    border: 1px solid #2c6693;
+    border-radius: 3px;
+    padding: 6px 12px;
+    font-size: 12px;
+    font-weight: 700;
+  }
+  .btn-load-id:hover { background: #2c6693; color: #ffffff; }
+  .saved-chips-wrap {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 6px;
+    margin-top: 4px;
+  }
+  .saved-id-chip {
+    background: #ffffff;
+    border: 1px solid #8eb8d6;
+    color: #1b4965;
+    font-size: 11px;
+    padding: 3px 8px;
+    border-radius: 12px;
+    cursor: pointer;
+    font-weight: 600;
+  }
+  .saved-id-chip:hover { background: #d9edf7; }
+  .reg-feedback {
+    font-size: 12px;
+    font-weight: 600;
+    margin-top: 6px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+  .reg-feedback.ok { color: #1b5e20; }
+  .reg-feedback.err { color: #c62828; }
+
+  /* ================= INSTRUCTIONS CONTENT ================= */
+  .inst-heading {
+    font-size: 15px;
+    font-weight: 700;
+    color: #111111;
+    margin: 14px 0 8px;
+    padding-bottom: 4px;
+    border-bottom: 1px solid #e0e6eb;
+  }
+  .inst-list {
+    padding-left: 22px;
+    margin-bottom: 12px;
+  }
+  .inst-list li {
+    margin-bottom: 7px;
+    color: #2b2b2b;
+  }
+  .real-exam-alert {
+    background: #fff8e1;
+    border: 1px solid #ffe082;
+    border-left: 4px solid var(--tcs-orange);
+    padding: 10px 14px;
+    border-radius: 3px;
+    margin: 12px 0;
+    font-size: 13px;
+    color: #5d3a00;
+  }
+  .blueprint-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 10px 0 14px;
+    font-size: 13px;
+  }
+  .blueprint-table th, .blueprint-table td {
+    border: 1px solid #cfd8dc;
+    padding: 7px 10px;
+    text-align: left;
+  }
+  .blueprint-table th {
+    background: #eaf3f9;
+    color: #174569;
+    font-weight: 700;
+  }
+  .symbol-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 8px 0 14px;
+  }
+  .symbol-table td {
+    padding: 6px 10px;
+    border-bottom: 1px solid #eef2f5;
+    vertical-align: middle;
+  }
+  .symbol-table td:first-child { width: 52px; text-align: center; }
+
+  .inst-footer {
+    border-top: 1px solid #cfd8dc;
+    background: #f5f8fa;
+    padding: 10px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-shrink: 0;
+  }
+  .tcs-btn {
+    padding: 8px 18px;
+    font-size: 13px;
+    font-weight: 700;
+    border-radius: 3px;
+    border: 1px solid transparent;
+    transition: all 0.15s;
+  }
+  .tcs-btn-primary {
+    background: var(--tcs-btn-blue);
+    color: #ffffff;
+    border-color: #2a6599;
+  }
+  .tcs-btn-primary:hover:not(:disabled) { background: var(--tcs-btn-blue-hover); }
+  .tcs-btn-primary:disabled { background: #9eb9d0; border-color: #9eb9d0; cursor: not-allowed; }
+  .tcs-btn-default {
+    background: #ffffff;
+    color: #333333;
+    border-color: #b0bec5;
+  }
+  .tcs-btn-default:hover { background: #edf2f5; }
+  .tcs-btn-teal {
+    background: var(--tcs-teal);
+    color: #ffffff;
+    border-color: #00695c;
+  }
+  .tcs-btn-teal:hover { background: var(--tcs-teal-hover); }
+  .tcs-btn-danger {
+    background: #d32f2f;
+    color: #ffffff;
+    border-color: #b71c1c;
+  }
+  .tcs-btn-danger:hover { background: #b71c1c; }
+
+  .decl-box {
+    background: #f9fbfd;
+    border: 1px solid #c5d9e8;
+    padding: 14px 16px;
+    border-radius: 3px;
+    margin-top: 14px;
+  }
+  .decl-label {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    cursor: pointer;
+    font-size: 13px;
+    color: #1f2d3d;
+    line-height: 1.5;
+  }
+  .decl-label input[type="checkbox"] {
+    margin-top: 3px;
+    width: 16px;
+    height: 16px;
+    cursor: pointer;
+  }
+
+  /* ================= SCREEN 2: EXAM INTERFACE ================= */
+  .exam-top-strip {
+    background: #f2f6f9;
+    border-bottom: 1px solid #c4d5e2;
+    padding: 0 14px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-shrink: 0;
+    gap: 10px;
+  }
+  .section-tabs {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    height: 100%;
+    overflow-x: auto;
+  }
+  .sec-tab {
+    height: 30px;
+    padding: 0 13px;
+    border-radius: 3px;
+    border: 1px solid #b5cad9;
+    background: #e9f0f5;
+    color: #455a64;
+    font-size: 12px;
+    font-weight: 700;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    white-space: nowrap;
+  }
+  .sec-tab.active {
+    background: var(--tcs-tab-active);
+    color: #ffffff;
+    border-color: #1f5a91;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.12);
+  }
+  .sec-tab.completed {
+    background: #e8f5e9;
+    color: #2e7d32;
+    border-color: #81c784;
+  }
+  .sec-tab.locked {
+    opacity: 0.72;
+    cursor: not-allowed;
+  }
+  .timer-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 14px;
+    font-weight: 700;
+    color: #111111;
+    background: #ffffff;
+    border: 1px solid #b0c6d6;
+    padding: 4px 12px;
+    border-radius: 3px;
+    white-space: nowrap;
+  }
+  .timer-pill .time-val {
+    font-family: "Courier New", Consolas, monospace;
+    font-size: 15px;
+    color: #0d47a1;
+  }
+  .timer-pill.warn {
+    background: #fff3e0;
+    border-color: #fb8c00;
+  }
+  .timer-pill.warn .time-val { color: #e65100; }
+  .timer-pill.danger {
+    background: #ffebee;
+    border-color: #e53935;
+    animation: pulseTimer 1s infinite;
+  }
+  .timer-pill.danger .time-val { color: #c62828; }
+  @keyframes pulseTimer {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.65; }
+  }
+
+  /* Exam Body Split */
+  .exam-body {
+    display: flex;
+    flex: 1;
+    min-height: 0;
+    position: relative;
+    overflow: hidden;
+  }
+  .exam-left-panel {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    background: #ffffff;
+    position: relative;
+  }
+
+  /* MCQ Panel */
+  .mcq-meta-bar {
+    padding: 8px 18px;
+    background: #fafafa;
+    border-bottom: 1px solid #dce3e8;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 13px;
+    flex-shrink: 0;
+  }
+  .mcq-qno { font-weight: 700; color: #111111; font-size: 14px; }
+  .mcq-marks-badge {
+    font-size: 12px;
+    font-weight: 700;
+    color: #2e7d32;
+    background: #e8f5e9;
+    border: 1px solid #a5d6a7;
+    padding: 2px 9px;
+    border-radius: 3px;
+  }
+  .mcq-marks-badge span.neg { color: #546e7a; margin-left: 6px; }
+  .mcq-scroll-area {
+    flex: 1;
+    overflow-y: auto;
+    padding: 20px 24px;
+  }
+  .mcq-topic-pill {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 700;
+    color: #1c5577;
+    background: #e3f2fd;
+    padding: 2px 8px;
+    border-radius: 2px;
+    margin-bottom: 10px;
+  }
+  .mcq-question-text {
+    font-size: 15px;
+    color: #111111;
+    line-height: 1.65;
+    margin-bottom: 18px;
+    font-weight: 500;
+  }
+  .mcq-options-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    max-width: 820px;
+  }
+  .mcq-opt-label {
+    display: flex;
+    align-items: flex-start;
+    gap: 11px;
+    padding: 11px 14px;
+    border: 1px solid #d5dee5;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background 0.12s, border-color 0.12s;
+    background: #ffffff;
+  }
+  .mcq-opt-label:hover {
+    background: #f2f8fc;
+    border-color: #7eb0d5;
+  }
+  .mcq-opt-label.selected {
+    background: #e6f3fc;
+    border-color: var(--tcs-blue);
+    box-shadow: inset 3px 0 0 var(--tcs-blue);
+  }
+  .mcq-opt-label input[type="radio"] {
+    margin-top: 3px;
+    width: 16px;
+    height: 16px;
+    accent-color: var(--tcs-blue);
+    cursor: pointer;
+    flex-shrink: 0;
+  }
+  .mcq-opt-num {
+    font-weight: 700;
+    color: #2c6693;
+    min-width: 18px;
+  }
+  .mcq-opt-text {
+    font-size: 14px;
+    color: #222222;
+    line-height: 1.5;
+  }
+  .mcq-bottom-bar {
+    padding: 10px 18px;
+    background: #f5f7f9;
+    border-top: 1px solid #cfd8dc;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 8px;
+    flex-shrink: 0;
+  }
+  .mcq-bottom-left { display: flex; gap: 8px; flex-wrap: wrap; }
+
+  /* Right Collapsible Sidebar */
+  .sidebar-toggle-btn {
+    position: absolute;
+    left: -17px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 17px;
+    height: 48px;
+    background: #1f2d3d;
+    color: #ffffff;
+    border: none;
+    border-radius: 4px 0 0 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: 700;
+    z-index: 20;
+    box-shadow: -1px 0 4px rgba(0,0,0,0.18);
+  }
+  .sidebar-toggle-btn:hover { background: var(--tcs-blue); }
+
+  .exam-right-sidebar {
+    width: 278px;
+    background: var(--tcs-sidebar-bg);
+    border-left: 1px solid var(--tcs-sidebar-border);
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0;
+    position: relative;
+    transition: width 0.2s ease;
+  }
+  .exam-right-sidebar.collapsed {
+    width: 0;
+    border-left: none;
+  }
+  .exam-right-sidebar.collapsed .sidebar-inner {
+    display: none;
+  }
+  .sidebar-inner {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    overflow: hidden;
+  }
+  .cand-mini-profile {
+    background: #ffffff;
+    padding: 10px 12px;
+    border-bottom: 1px solid var(--tcs-sidebar-border);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-shrink: 0;
+  }
+  .cand-mini-avatar {
+    width: 44px;
+    height: 44px;
+    border-radius: 3px;
+    border: 1px solid #b5cddc;
+    background: #eef6fb;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+  .cand-mini-info { min-width: 0; flex: 1; }
+  .cand-mini-name {
+    font-weight: 700;
+    font-size: 13px;
+    color: #143652;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .cand-mini-id {
+    font-family: "Courier New", Consolas, monospace;
+    font-size: 11px;
+    font-weight: 700;
+    color: #2c6693;
+    background: #e6f2fa;
+    display: inline-block;
+    padding: 1px 6px;
+    border-radius: 2px;
+    margin-top: 2px;
+  }
+
+  /* 5-Symbol Live Legend */
+  .palette-legend {
+    padding: 10px 10px 8px;
+    background: #f6fbfe;
+    border-bottom: 1px solid var(--tcs-sidebar-border);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6px 6px;
+    font-size: 11px;
+    flex-shrink: 0;
+  }
+  .legend-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    color: #263238;
+    line-height: 1.25;
+  }
+  .legend-item.full-span { grid-column: 1 / -1; }
+
+  .palette-sec-title {
+    background: #337ab7;
+    color: #ffffff;
+    font-weight: 700;
+    font-size: 12.5px;
+    padding: 6px 12px;
+    flex-shrink: 0;
+  }
+  .palette-grid-wrap {
+    flex: 1;
+    overflow-y: auto;
+    padding: 10px 12px;
+  }
+  .palette-choose-lbl {
+    font-size: 11.5px;
+    font-weight: 700;
+    color: #37474f;
+    margin-bottom: 8px;
+  }
+  .palette-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 9px 6px;
+    justify-items: center;
+  }
+  .pal-btn {
+    background: none;
+    border: none;
+    padding: 2px;
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+  }
+  .pal-btn.current-q {
+    outline: 2px solid #0d47a1;
+    outline-offset: 2px;
+    background: rgba(13, 71, 161, 0.08);
+  }
+
+  .sidebar-submit-box {
+    padding: 10px 12px;
+    background: #d7eef9;
+    border-top: 1px solid var(--tcs-sidebar-border);
+    text-align: center;
+    flex-shrink: 0;
+  }
+  .sidebar-submit-box button { width: 100%; padding: 9px 12px; }
+
+  /* ================= TYPING INTERFACE (SECTIONS 2 & 3) ================= */
+  .typing-subbar {
+    background: #eef4f8;
+    border-bottom: 1px solid #c6d7e4;
+    padding: 6px 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-shrink: 0;
+    gap: 10px;
+  }
+  .typing-subtab-group {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .typing-blue-subtab {
+    background: var(--tcs-tab-active);
+    color: #ffffff;
+    font-weight: 700;
+    font-size: 13px;
+    padding: 5px 14px;
+    border-radius: 3px;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.12);
+  }
+  .zoom-controls {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    background: #ffffff;
+    border: 1px solid #b5c8d6;
+    border-radius: 3px;
+    padding: 2px 4px;
+  }
+  .zoom-btn {
+    background: #f0f5f9;
+    border: 1px solid #c5d6e3;
+    color: #1b4965;
+    font-weight: 700;
+    font-size: 12px;
+    padding: 2px 8px;
+    border-radius: 2px;
+  }
+  .zoom-btn:hover { background: #d9edf7; }
+  .zoom-val {
+    font-size: 11px;
+    font-weight: 700;
+    color: #455a64;
+    min-width: 34px;
+    text-align: center;
+  }
+  .real-mode-chip {
+    font-size: 11.5px;
+    font-weight: 700;
+    color: #6d4c00;
+    background: #fff8e1;
+    border: 1px solid #ffd54f;
+    padding: 3px 10px;
+    border-radius: 12px;
+  }
+
+  .typing-split-wrap {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding: 14px 18px;
+    min-height: 0;
+    background: #f7f9fb;
+  }
+  .passage-box-wrap {
+    flex: 1.08;
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
+  }
+  .box-caption {
+    font-size: 12px;
+    font-weight: 700;
+    color: #37474f;
+    margin-bottom: 4px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .passage-readonly-box {
+    flex: 1;
+    overflow-y: auto;
+    background: #ffffff;
+    border: 1.5px solid #90a4ae;
+    border-radius: 3px;
+    padding: 16px 20px;
+    color: #000000;
+    font-family: "Times New Roman", Georgia, Arial, serif;
+    font-size: 17px;
+    line-height: 1.75;
+    white-space: pre-wrap;
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+  }
+  .typing-input-wrap {
+    flex: 0.92;
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
+  }
+  .typing-textarea {
+    flex: 1;
+    width: 100%;
+    resize: none;
+    background: #ffffff;
+    border: 2px solid var(--tcs-orange);
+    border-radius: 3px;
+    padding: 14px 18px;
+    color: #111111;
+    font-family: Arial, "Segoe UI", sans-serif;
+    font-size: 16px;
+    line-height: 1.65;
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(245, 124, 0, 0.14);
+  }
+  .typing-textarea:focus {
+    border-color: #e65100;
+    box-shadow: 0 0 0 3px rgba(245, 124, 0, 0.24);
+  }
+
+  /* Typing Right Live Stats Sidebar */
+  .typing-stats-list {
+    padding: 10px 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    flex: 1;
+    overflow-y: auto;
+  }
+  .stat-counter-row {
+    background: #ffffff;
+    border: 1px solid #c2dce9;
+    border-radius: 3px;
+    padding: 8px 11px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .stat-counter-lbl {
+    font-size: 12px;
+    font-weight: 700;
+    color: #2c4a5e;
+  }
+  .stat-counter-val {
+    font-family: "Courier New", Consolas, monospace;
+    font-size: 16px;
+    font-weight: 800;
+    color: #0d47a1;
+  }
+  .typing-side-notes {
+    background: #ffffff;
+    border: 1px solid #c2dce9;
+    border-left: 3px solid var(--tcs-teal);
+    border-radius: 3px;
+    padding: 9px 10px;
+    font-size: 11.5px;
+    color: #37474f;
+    line-height: 1.5;
+  }
+  .typing-side-notes ul {
+    padding-left: 16px;
+    margin-top: 4px;
+  }
+  .typing-side-notes li { margin-bottom: 3px; }
+
+  /* ================= SCREEN 3: SCORECARD & HISTORY ================= */
+  .scorecard-container {
+    max-width: 1180px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 20px 18px 48px;
+  }
+  .sc-card {
+    background: #ffffff;
+    border: 1px solid #cfdbe4;
+    border-radius: 5px;
+    padding: 18px 20px;
+    margin-bottom: 18px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+  }
+  .sc-card-title {
+    font-size: 15px;
+    font-weight: 700;
+    color: #16476b;
+    padding-bottom: 9px;
+    margin-bottom: 14px;
+    border-bottom: 2px solid #e3eef6;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  .sc-hero-banner {
+    background: linear-gradient(135deg, #2c6693 0%, #1a4769 100%);
+    color: #ffffff;
+    border-radius: 5px;
+    padding: 18px 22px;
+    margin-bottom: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 14px;
+  }
+  .sc-hero-cand {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  .sc-hero-avatar {
+    width: 56px;
+    height: 56px;
+    border-radius: 4px;
+    background: rgba(255,255,255,0.16);
+    border: 1.5px solid rgba(255,255,255,0.45);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .sc-hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .sc-kpi-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 11px;
+    margin-bottom: 18px;
+  }
+  .sc-kpi {
+    background: #ffffff;
+    border: 1px solid #cfdbe4;
+    border-top: 4px solid var(--tcs-blue);
+    border-radius: 4px;
+    padding: 13px 14px;
+  }
+  .sc-kpi.grand { border-top-color: #1565c0; background: #f3f8ff; }
+  .sc-kpi.green { border-top-color: #2e7d32; }
+  .sc-kpi.teal { border-top-color: #00897b; }
+  .sc-kpi.orange { border-top-color: #f57c00; }
+  .sc-kpi-label { font-size: 11px; font-weight: 700; color: #546e7a; text-transform: uppercase; letter-spacing: 0.2px; }
+  .sc-kpi-value { font-size: 23px; font-weight: 800; color: #16324f; margin: 4px 0 2px; }
+  .sc-kpi-sub { font-size: 11.5px; color: #455a64; line-height: 1.4; }
+  .qual-pill {
+    display: inline-block;
+    padding: 2px 9px;
+    border-radius: 12px;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 0.3px;
+    vertical-align: middle;
+  }
+  .qual-pill.pass { background: #e8f5e9; color: #1b5e20; border: 1px solid #81c784; }
+  .qual-pill.fail { background: #ffebee; color: #b71c1c; border: 1px solid #e57373; }
+  .hero-qual-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 4px 11px;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: 800;
+    margin-left: 8px;
+  }
+  .hero-qual-badge.pass { background: #2e7d32; color: #ffffff; border: 1px solid #a5d6a7; }
+  .hero-qual-badge.fail { background: #c62828; color: #ffffff; border: 1px solid #ef9a9a; }
+  .typing-marks-pill {
+    font-size: 12px;
+    font-weight: 700;
+    color: #1b5e20;
+    background: #e8f5e9;
+    border: 1px solid #a5d6a7;
+    padding: 3px 10px;
+    border-radius: 3px;
+  }
+
+  /* Attempt Comparison Table */
+  .table-responsive { overflow-x: auto; }
+  .sc-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+  }
+  .sc-table th, .sc-table td {
+    border: 1px solid #d5e1ea;
+    padding: 8px 10px;
+    text-align: center;
+  }
+  .sc-table th {
+    background: #eaf3f9;
+    color: #16476b;
+    font-weight: 700;
+  }
+  .sc-table tr.active-attempt-row {
+    background: #e3f2fd;
+    font-weight: 600;
+  }
+  .sc-table tbody tr:hover { background: #f3f9fd; }
+
+  /* Penalty Toggle */
+  .penalty-toggle-bar {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: #f0f6fa;
+    border: 1px solid #bdd4e5;
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 700;
+    color: #1b4965;
+  }
+  .penalty-btn {
+    border: none;
+    padding: 4px 11px;
+    border-radius: 14px;
+    font-size: 12px;
+    font-weight: 700;
+    background: transparent;
+    color: #455a64;
+  }
+  .penalty-btn.active {
+    background: var(--tcs-blue);
+    color: #ffffff;
+  }
+
+  /* Typing Formula Breakdown */
+  .formula-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.15fr;
+    gap: 16px;
+    margin-bottom: 14px;
+  }
+  .formula-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+  }
+  .formula-table td {
+    padding: 6px 10px;
+    border-bottom: 1px solid #e8eef3;
+  }
+  .formula-table td:last-child {
+    text-align: right;
+    font-family: "Courier New", Consolas, monospace;
+    font-weight: 700;
+    color: #153c5c;
+  }
+  .formula-steps-box {
+    background: #f7fafc;
+    border: 1px solid #d4e3ee;
+    border-radius: 4px;
+    padding: 12px 14px;
+    font-size: 12.5px;
+    line-height: 1.7;
+  }
+  .formula-step-line {
+    padding: 4px 0;
+    border-bottom: 1px dashed #dde7ef;
+  }
+  .formula-step-line:last-child { border-bottom: none; }
+  .formula-code {
+    font-family: "Courier New", Consolas, monospace;
+    background: #eaf2f8;
+    padding: 1px 5px;
+    border-radius: 2px;
+    color: #0d47a1;
+    font-weight: 700;
+  }
+
+  /* Post-Test Error Review Diff Box */
+  .diff-legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    font-size: 12px;
+    margin-bottom: 8px;
+    padding: 7px 10px;
+    background: #f8fafc;
+    border: 1px solid #e0e8ef;
+    border-radius: 3px;
+  }
+  .diff-box {
+    max-height: 290px;
+    overflow-y: auto;
+    border: 1px solid #c5d5e2;
+    border-radius: 4px;
+    padding: 14px 16px;
+    background: #ffffff;
+    font-family: Arial, "Segoe UI", sans-serif;
+    font-size: 14px;
+    line-height: 2.05;
+  }
+  .tok-ok { color: #1b5e20; }
+  .tok-wrong-wrap {
+    display: inline-block;
+    background: #ffebee;
+    border: 1px solid #ef9a9a;
+    border-radius: 3px;
+    padding: 0 5px;
+    margin: 0 2px;
+    line-height: 1.5;
+  }
+  .tok-typed-err {
+    color: #c62828;
+    text-decoration: line-through;
+    font-weight: 700;
+  }
+  .tok-exp {
+    color: #1b5e20;
+    font-weight: 700;
+    margin-left: 4px;
+  }
+  .tok-omit-wrap {
+    display: inline-block;
+    background: #fce4ec;
+    border: 1px dashed #e53935;
+    border-radius: 3px;
+    padding: 0 5px;
+    margin: 0 2px;
+    line-height: 1.5;
+    font-size: 13px;
+  }
+  .tok-extra-wrap {
+    display: inline-block;
+    background: #ffebee;
+    border: 1px solid #d32f2f;
+    border-radius: 3px;
+    padding: 0 5px;
+    margin: 0 2px;
+    line-height: 1.5;
+    color: #b71c1c;
+    text-decoration: line-through;
+    font-weight: 700;
+  }
+  .tok-half-wrap {
+    display: inline-block;
+    background: #fff8e1;
+    border: 1px solid #ffb300;
+    border-radius: 3px;
+    padding: 0 5px;
+    margin: 0 2px;
+    line-height: 1.5;
+  }
+  .tok-tag {
+    font-size: 10px;
+    font-weight: 700;
+    background: #ef6c00;
+    color: #ffffff;
+    padding: 0 4px;
+    border-radius: 2px;
+    margin-left: 4px;
+    vertical-align: middle;
+  }
+  .tok-untyped {
+    color: #90a4ae;
+    font-style: italic;
+  }
+
+  /* MCQ Solution Cards */
+  .filter-bar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+  .filter-btn {
+    padding: 4px 12px;
+    border: 1px solid #b5cad9;
+    background: #f4f8fb;
+    color: #2c4a5e;
+    font-size: 12px;
+    font-weight: 700;
+    border-radius: 14px;
+  }
+  .filter-btn.active {
+    background: var(--tcs-blue);
+    color: #ffffff;
+    border-color: var(--tcs-blue);
+  }
+  .sol-item {
+    border: 1px solid #d8e3ec;
+    border-radius: 4px;
+    padding: 13px 15px;
+    margin-bottom: 12px;
+    background: #ffffff;
+  }
+  .sol-item.correct { border-left: 4px solid #2e7d32; }
+  .sol-item.wrong { border-left: 4px solid #d32f2f; }
+  .sol-item.skipped { border-left: 4px solid #78909c; }
+  .sol-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 8px;
+  }
+  .sol-badge {
+    font-size: 11px;
+    font-weight: 700;
+    padding: 2px 8px;
+    border-radius: 10px;
+  }
+  .sol-badge.correct { background: #e8f5e9; color: #1b5e20; }
+  .sol-badge.wrong { background: #ffebee; color: #b71c1c; }
+  .sol-badge.skipped { background: #eceff1; color: #455a64; }
+  .sol-opts {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6px 12px;
+    margin: 8px 0 10px;
+  }
+  .sol-opt {
+    padding: 6px 10px;
+    border-radius: 3px;
+    border: 1px solid #e0e7ed;
+    font-size: 13px;
+    background: #fafcfd;
+  }
+  .sol-opt.is-correct {
+    background: #e8f5e9;
+    border-color: #66bb6a;
+    color: #1b5e20;
+    font-weight: 700;
+  }
+  .sol-opt.is-wrong-pick {
+    background: #ffebee;
+    border-color: #ef5350;
+    color: #b71c1c;
+    font-weight: 700;
+  }
+  .sol-exp {
+    background: #f1f7fb;
+    border-left: 3px solid var(--tcs-blue);
+    padding: 8px 11px;
+    font-size: 12.5px;
+    color: #263238;
+  }
+
+  /* ================= MODALS & TOAST ================= */
+  .modal-backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(15, 32, 48, 0.58);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 999;
+    padding: 16px;
+  }
+  .modal-box {
+    background: #ffffff;
+    border-radius: 4px;
+    width: 100%;
+    max-width: 580px;
+    max-height: 88vh;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.28);
+  }
+  .modal-box.wide { max-width: 820px; }
+  .modal-header {
+    background: var(--tcs-blue);
+    color: #ffffff;
+    padding: 11px 16px;
+    font-weight: 700;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .modal-close {
+    background: none;
+    border: none;
+    color: #ffffff;
+    font-size: 20px;
+    line-height: 1;
+    padding: 0 4px;
+  }
+  .modal-body {
+    padding: 16px 18px;
+    overflow-y: auto;
+    font-size: 13.5px;
+  }
+  .modal-footer {
+    padding: 10px 16px;
+    background: #f4f7f9;
+    border-top: 1px solid #dce4ea;
+    display: flex;
+    justify-content: flex-end;
+    gap: 8px;
+  }
+
+  .toast-msg {
+    position: fixed;
+    bottom: 22px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #1f2d3d;
+    color: #ffffff;
+    padding: 9px 18px;
+    border-radius: 4px;
+    font-size: 13px;
+    font-weight: 600;
+    z-index: 1200;
+    box-shadow: 0 4px 14px rgba(0,0,0,0.28);
+    transition: opacity 0.25s;
+  }
+
+  /* ================= RESPONSIVE & PRINT ================= */
+  @media (max-width: 900px) {
+    .reg-grid, .formula-grid, .sol-opts { grid-template-columns: 1fr; }
+    .sc-kpi-grid { grid-template-columns: repeat(2, 1fr); }
+    .inst-right-sidebar { display: none; }
+    .exam-right-sidebar { position: absolute; right: 0; top: 0; bottom: 0; z-index: 30; box-shadow: -3px 0 12px rgba(0,0,0,0.18); }
+  }
+  @media (max-width: 560px) {
+    .sc-kpi-grid { grid-template-columns: 1fr; }
+    .tcs-brand-tag { display: none; }
+  }
+  @media print {
+    body { background: #ffffff; }
+    .no-print, .sc-hero-actions, .filter-bar, .penalty-toggle-bar { display: none !important; }
+    .sc-card { break-inside: avoid; box-shadow: none; border: 1px solid #bbb; }
+    .diff-box { max-height: none; overflow: visible; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ==================== SCREEN 1A: LOGIN + GENERAL INSTRUCTIONS ==================== -->
+<div id="screen-1a" class="screen screen-fixed">
+  <header class="tcs-header">
+    <div class="tcs-header-left">
+      <span class="tcs-logo-badge">TCS iON</span>
+      <span class="tcs-exam-title">OSSSC CRE (I) 2025 — Computer Skill Test (Mock Test - 1)</span>
+      <span class="tcs-brand-tag">By Study World (Jagannath Dash)</span>
+    </div>
+    <div class="tcs-header-right">
+      <span style="font-size:12px; opacity:0.9;">digialm.com CST Simulator</span>
+    </div>
+  </header>
+
+  <div class="tcs-subbar">
+    <span>Instructions</span>
+    <span style="font-size:12px; font-weight:600;">OSSSC CRE (I) 2025 | Computer Skill Test (50 Mins)</span>
+  </div>
+
+  <div class="inst-main-wrap">
+    <div class="inst-left-col">
+      <div class="inst-scroll-body">
+
+        <!-- Candidate Registration & Unique ID Box -->
+        <div class="reg-box">
+          <div class="reg-box-title">
+            <span>Candidate Registration &amp; Unique Roll / Registration ID</span>
+            <span style="font-size:11.5px; font-weight:600; color:#2c6693;">All attempts are saved under your Unique ID</span>
+          </div>
+
+          <div class="reg-grid">
+            <div class="reg-field">
+              <label for="cand-name-input">Candidate Full Name <span style="color:#c62828;">*</span></label>
+              <input type="text" id="cand-name-input" class="reg-input" placeholder="Enter Candidate Name (e.g., Subham Patra)" maxlength="60" autocomplete="off">
+            </div>
+            <div class="reg-field">
+              <label>Unique Candidate Roll / Registration ID (Auto-Generated)</label>
+              <div class="id-display-row">
+                <div class="id-code-box">
+                  <span id="generated-id-text">OSSSC-2025-0000</span>
+                </div>
+                <button type="button" id="btn-copy-id" class="btn-copy-id" onclick="copyCandidateId()">Copy ID</button>
+                <button type="button" class="btn-regen-id" title="Generate a new Unique ID" onclick="generateFreshCandidateId()">&#x21bb;</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="load-id-bar">
+            <span class="load-id-label">Returning Candidate? Load Existing Candidate ID:</span>
+            <input type="text" id="load-id-input" class="load-id-input" placeholder="OSSSC-2025-XXXX" maxlength="20">
+            <button type="button" class="btn-load-id" onclick="loadExistingCandidateByInput()">Load ID</button>
+            <button type="button" id="btn-view-history-start" class="btn-load-id hidden" style="border-color:#00897b; color:#00695c;" onclick="openSavedHistoryFromStart()">View Past Attempts</button>
+            <div id="saved-id-chips" class="saved-chips-wrap hidden"></div>
+          </div>
+          <div id="reg-feedback" class="reg-feedback hidden"></div>
+        </div>
+
+        <h3 style="text-align:center; font-size:16px; color:#111; margin-bottom:10px;">Please read the instructions carefully</h3>
+
+        <div class="inst-heading">General Instructions:</div>
+        <ol class="inst-list">
+          <li>Total duration of the <strong>OSSSC CRE (I) 2025 Computer Skill Test</strong> is <strong>50 minutes</strong>, divided sequentially into <strong>three mandatory sections</strong> as detailed below:
+            <table class="blueprint-table">
+              <thead>
+                <tr>
+                  <th>Section</th>
+                  <th>Test Component</th>
+                  <th>Volume / Scope</th>
+                  <th>Duration</th>
+                  <th>Marking / Evaluation</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>Section 1</strong></td>
+                  <td>Computer Knowledge MCQ</td>
+                  <td>20 Questions</td>
+                  <td>20 Minutes</td>
+                  <td><strong>20 Marks</strong> (+1.00 per correct | 0 negative marking)</td>
+                </tr>
+                <tr>
+                  <td><strong>Section 2</strong></td>
+                  <td>Mock Computer Typing 1 (Paragraph 1)</td>
+                  <td>~2,546 characters (424 words)</td>
+                  <td>15 Minutes</td>
+                  <td><strong>15 Marks</strong> (Proportional Net Keystrokes Formula + WPM &amp; Accuracy)</td>
+                </tr>
+                <tr>
+                  <td><strong>Section 3</strong></td>
+                  <td>Mock Computer Typing 2 (Paragraph 2)</td>
+                  <td>~2,542 characters (420 words)</td>
+                  <td>15 Minutes</td>
+                  <td><strong>15 Marks</strong> (Proportional Net Keystrokes Formula + WPM &amp; Accuracy)</td>
+                </tr>
+                <tr style="background:#f0f7fc; font-weight:700;">
+                  <td colspan="2">Total OSSSC CRE (I) 2025 Skill Test</td>
+                  <td>20 MCQs + 2 Typing Passages</td>
+                  <td>50 Minutes</td>
+                  <td>50.00 Marks (Minimum Qualifying: 40% = 20.00 / 50.00 Marks)</td>
+                </tr>
+              </tbody>
+            </table>
+          </li>
+          <li>The clock is controlled by the server countdown timer displayed at the top-right corner of the exam screen. When the timer for a section reaches <strong>00:00</strong>, that section is automatically submitted and the exam advances to the next section (or displays the final scorecard after Section 3).</li>
+          <li>
+            <div class="real-exam-alert">
+              <strong>REAL EXAM MODE (Typing Sections 2 &amp; 3):</strong> No yellow word highlighting and no green/red error hints are displayed while typing. Text selection, Copy, Cut, Paste, and Right-Click are strictly disabled. Full Backspace and Arrow-key editing are supported. Detailed word-by-word error analysis is displayed only after test submission.
+            </div>
+          </li>
+          <li>The Question Palette displayed on the right side of the screen during Section 1 (MCQ) shows the status of each question using the <strong>five official TCS iON symbols</strong>:
+            <table class="symbol-table">
+              <tr>
+                <td><span class="sym sym-not-visited">1</span></td>
+                <td>You have <strong>not visited</strong> the question yet.</td>
+              </tr>
+              <tr>
+                <td><span class="sym sym-not-answered">2</span></td>
+                <td>You have <strong>not answered</strong> the question.</td>
+              </tr>
+              <tr>
+                <td><span class="sym sym-answered">3</span></td>
+                <td>You have <strong>answered</strong> the question.</td>
+              </tr>
+              <tr>
+                <td><span class="sym sym-marked">4</span></td>
+                <td>You have NOT answered the question, but have <strong>marked the question for review</strong> (not evaluated).</td>
+              </tr>
+              <tr>
+                <td>
+                  <span class="sym-ans-marked-wrap">
+                    <span class="sym-ans-marked">5</span>
+                    <span class="sym-green-dot">&#10003;</span>
+                  </span>
+                </td>
+                <td>The question(s) <strong>"Answered and Marked for Review"</strong> will be <strong>considered for evaluation</strong>.</td>
+              </tr>
+            </table>
+          </li>
+          <li>You can click on the <strong>&gt;</strong> arrow located to the left of the question palette to collapse the sidebar and maximize the question / typing area, and click <strong>&lt;</strong> to expand it again.</li>
+        </ol>
+
+        <div class="inst-heading">Navigating &amp; Answering a Question (Section 1 — MCQ):</div>
+        <ol class="inst-list">
+          <li>To answer a question, select one option by clicking its radio button, then click <strong>Save &amp; Next</strong> to save your answer and move to the next question.</li>
+          <li>Click <strong>Mark for Review &amp; Next</strong> to save your response (if selected) and mark the question for review before moving to the next question.</li>
+          <li><strong>Important TCS iON Rule:</strong> Clicking directly on a question number in the Question Palette navigates to that question <em>without saving</em> your currently selected option unless you click <strong>Save &amp; Next</strong> or <strong>Mark for Review &amp; Next</strong>.</li>
+          <li>To deselect a chosen option, click the <strong>Clear Response</strong> button.</li>
+        </ol>
+      </div>
+
+      <div class="inst-footer">
+        <span style="font-size:12px; color:#546e7a;">Curated by <strong>Study World (Jagannath Dash)</strong></span>
+        <button type="button" class="tcs-btn tcs-btn-primary" onclick="goToScreen1B()">Next &gt;</button>
+      </div>
+    </div>
+
+    <aside class="inst-right-sidebar">
+      <div class="profile-avatar-lg" id="avatar-1a"></div>
+      <div class="profile-name-lg" id="profile-name-1a">Candidate</div>
+      <div class="profile-id-pill" id="profile-id-1a">OSSSC-2025-0000</div>
+      <div class="profile-meta-small">
+        <strong>OSSSC CRE (I) 2025</strong><br>
+        Computer Skill Test (Mock - 1)<br>
+        Study World (Jagannath Dash)
+      </div>
+    </aside>
+  </div>
+</div>
+
+<!-- ==================== SCREEN 1B: OTHER IMPORTANT INSTRUCTIONS & DECLARATION ==================== -->
+<div id="screen-1b" class="screen screen-fixed hidden">
+  <header class="tcs-header">
+    <div class="tcs-header-left">
+      <span class="tcs-logo-badge">TCS iON</span>
+      <span class="tcs-exam-title">OSSSC CRE (I) 2025 — Computer Skill Test (Mock Test - 1)</span>
+      <span class="tcs-brand-tag">By Study World (Jagannath Dash)</span>
+    </div>
+    <div class="tcs-header-right">
+      <span style="font-size:12px; opacity:0.9;">Other Important Instructions</span>
+    </div>
+  </header>
+
+  <div class="tcs-subbar">
+    <span>Other Important Instructions &amp; Candidate Declaration</span>
+    <span id="decl-attempt-badge" style="font-size:12px; font-weight:700; color:#1c5577;">Attempt #1</span>
+  </div>
+
+  <div class="inst-main-wrap">
+    <div class="inst-left-col">
+      <div class="inst-scroll-body">
+        <h3 style="text-align:center; font-size:16px; margin-bottom:12px;">OSSSC CRE (I) 2025 Computer Skill Test — Pattern &amp; Evaluation Rules</h3>
+
+        <ol class="inst-list">
+          <li><strong>Section 1 (Computer Skill MCQ — 20 Minutes):</strong> Contains 20 practical multiple-choice questions on MS Word, MS Excel, MS PowerPoint, MS Access, Windows, and Internet/Security. Each correct answer carries <strong>+1 mark</strong> with <strong>no negative marking</strong>.</li>
+          <li><strong>Sections 2 &amp; 3 (Mock Computer Typing 1 &amp; 2 — 15 Minutes Each):</strong> Each section presents a ~2,500-character (~420+ words) plain-text passage in the upper read-only box and an active typing box below. Live sidebar counters show neutral metrics only (Keystrokes, Backspaces, Total Words, Typed Words, Pending Words).</li>
+          <li><strong>Official 5-Character Word Evaluation Formula:</strong>
+            <ul style="padding-left:20px; margin-top:5px;">
+              <li>1 Standard Word = <strong>5 keystrokes/characters</strong>.</li>
+              <li><strong>Full Mistake (1.0 error):</strong> Wrong/misspelled word, omitted word, or extra inserted word.</li>
+              <li><strong>Half Mistake (0.5 error):</strong> Spacing error, capitalization error, or punctuation error.</li>
+              <li><strong>Total Error Words</strong> = Full Mistakes + (0.5 &times; Half Mistakes).</li>
+              <li><strong>Gross WPM</strong> = (Gross Keystrokes / 5) / Time Taken in Minutes.</li>
+              <li><strong>Net WPM</strong> = ((Gross Keystrokes &minus; (Total Error Words &times; 5)) / 5) / Time Taken in Minutes (10&times; penalty preview also available on the scorecard).</li>
+              <li><strong>Accuracy %</strong> = ((Total Typed Words &minus; Total Error Words) / Total Typed Words) &times; 100.</li>
+              <li><strong>Typing Secured Marks (Max 15.00 per Typing Test)</strong> = min(15.00, (Net Valid Keystrokes / Total Passage Keystrokes) &times; 15.00), where Net Valid Keystrokes = max(0, Gross Keystrokes &minus; (Total Error Words &times; Penalty)).</li>
+              <li><strong>Grand Total &amp; Qualifying Norm:</strong> Section 1 (20 Marks) + Typing Test 1 (15 Marks) + Typing Test 2 (15 Marks) = <strong>50.00 Marks</strong>. Securing at least <strong>40% (20.00 / 50.00)</strong> marks qualifies the Skill Test.</li>
+            </ul>
+          </li>
+          <li>Your performance is automatically stored in your browser under your Unique Candidate ID (<strong id="decl-id-inline">OSSSC-2025-0000</strong>). You may re-attempt the test anytime to compare Attempt 1, Attempt 2, Attempt 3, and beyond.</li>
+        </ol>
+
+        <div style="margin: 14px 0 8px; display:flex; align-items:center; gap:10px;">
+          <label for="default-lang" style="font-weight:700; font-size:13px;">Choose your default language:</label>
+          <select id="default-lang" style="padding:5px 10px; border:1px solid #9cb8cc; border-radius:3px; font-size:13px;">
+            <option value="English" selected>English</option>
+          </select>
+        </div>
+        <div style="font-size:12px; color:#c62828; margin-bottom:10px;">
+          Please note all questions and typing passages will appear in English.
+        </div>
+
+        <div class="decl-box">
+          <label class="decl-label">
+            <input type="checkbox" id="decl-checkbox" onchange="toggleBeginButton()">
+            <span>I have read and understood the instructions. All computer hardware allotted to me are in proper working condition. I declare that I am not in possession of / not wearing / not carrying any prohibited gadget like mobile phone, bluetooth devices etc. I agree that in case of not adhering to the instructions, I shall be liable to be debarred from this Test and/or to disciplinary action.</span>
+          </label>
+        </div>
+      </div>
+
+      <div class="inst-footer">
+        <button type="button" class="tcs-btn tcs-btn-default" onclick="goBackToScreen1A()">&lt; Previous</button>
+        <button type="button" id="btn-begin-exam" class="tcs-btn tcs-btn-primary" disabled onclick="startFullExam()">I am ready to begin</button>
+      </div>
+    </div>
+
+    <aside class="inst-right-sidebar">
+      <div class="profile-avatar-lg" id="avatar-1b"></div>
+      <div class="profile-name-lg" id="profile-name-1b">Candidate</div>
+      <div class="profile-id-pill" id="profile-id-1b">OSSSC-2025-0000</div>
+      <div class="profile-meta-small">
+        <strong>OSSSC CRE (I) 2025</strong><br>
+        Sequential 3-Section CST<br>
+        Study World (Jagannath Dash)
+      </div>
+    </aside>
+  </div>
+</div>
+
+<!-- ==================== SCREEN 2: SEQUENTIAL 3-SECTION EXAM INTERFACE ==================== -->
+<div id="screen-2" class="screen screen-fixed hidden">
+  <header class="tcs-header">
+    <div class="tcs-header-left">
+      <span class="tcs-logo-badge">TCS iON</span>
+      <span class="tcs-exam-title">OSSSC CRE (I) 2025 — Computer Skill Test (Mock Test - 1)</span>
+      <span class="tcs-brand-tag">By Study World (Jagannath Dash)</span>
+    </div>
+    <div class="tcs-header-right">
+      <button type="button" id="btn-qpaper-modal" class="header-action-btn" onclick="openQuestionPaperModal()">&#128196; Question Paper</button>
+      <button type="button" class="header-action-btn" onclick="openInstructionsModal()">&#8505; Instructions</button>
+    </div>
+  </header>
+
+  <div class="exam-top-strip">
+    <div class="section-tabs">
+      <button type="button" id="tab-sec-1" class="sec-tab active" onclick="handleSectionTabClick(1)">Computer Skill MCQ</button>
+      <button type="button" id="tab-sec-2" class="sec-tab locked" onclick="handleSectionTabClick(2)">&#128274; Mock Computer Typing 1</button>
+      <button type="button" id="tab-sec-3" class="sec-tab locked" onclick="handleSectionTabClick(3)">&#128274; Mock Computer Typing 2</button>
+    </div>
+    <div id="exam-timer-pill" class="timer-pill">
+      <span>Time Left :</span>
+      <span id="exam-timer-val" class="time-val">20:00</span>
+    </div>
+  </div>
+
+  <div class="exam-body">
+    <!-- LEFT MAIN AREA -->
+    <div class="exam-left-panel">
+
+      <!-- SECTION 1: MCQ VIEW -->
+      <div id="panel-mcq" style="display:flex; flex-direction:column; flex:1; min-height:0;">
+        <div class="mcq-meta-bar">
+          <div class="mcq-qno" id="mcq-qno-header">Question No. 1</div>
+          <div class="mcq-marks-badge">
+            Marks: +1.00 <span class="neg">| Negative: 0.00</span>
+          </div>
+        </div>
+        <div class="mcq-scroll-area" id="mcq-scroll-area">
+          <div class="mcq-topic-pill" id="mcq-topic-pill">Topic</div>
+          <div class="mcq-question-text" id="mcq-question-text"></div>
+          <div class="mcq-options-list" id="mcq-options-list"></div>
+        </div>
+        <div class="mcq-bottom-bar">
+          <div class="mcq-bottom-left">
+            <button type="button" class="tcs-btn tcs-btn-default" onclick="markForReviewAndNext()">Mark for Review &amp; Next</button>
+            <button type="button" class="tcs-btn tcs-btn-default" onclick="clearMcqResponse()">Clear Response</button>
+          </div>
+          <button type="button" class="tcs-btn tcs-btn-primary" onclick="saveAndNextMcq()">Save &amp; Next</button>
+        </div>
+      </div>
+
+      <!-- SECTIONS 2 & 3: TYPING SPLIT-BOX VIEW -->
+      <div id="panel-typing" class="hidden" style="display:flex; flex-direction:column; flex:1; min-height:0;">
+        <div class="typing-subbar">
+          <div class="typing-subtab-group">
+            <span id="typing-subtab-label" class="typing-blue-subtab">Typing Test 1</span>
+            <span class="typing-marks-pill">Max Marks: 15.00</span>
+            <div class="zoom-controls" title="Adjust passage &amp; input font size">
+              <button type="button" class="zoom-btn" onclick="adjustTypingZoom(-1)">A-</button>
+              <span id="typing-zoom-val" class="zoom-val">17px</span>
+              <button type="button" class="zoom-btn" onclick="adjustTypingZoom(1)">A+</button>
+            </div>
+          </div>
+          <span class="real-mode-chip">Real Exam Mode &mdash; No Word Highlighting / Error Hints</span>
+        </div>
+
+        <div class="typing-split-wrap">
+          <div class="passage-box-wrap">
+            <div class="box-caption">
+              <span id="passage-box-title">Reference Passage &mdash; Paragraph 1 (Read-Only, Plain Text)</span>
+              <span id="passage-char-meta" style="color:#546e7a; font-weight:600;"></span>
+            </div>
+            <div id="typing-passage-box" class="passage-readonly-box" oncopy="return false" oncut="return false" oncontextmenu="return false"></div>
+          </div>
+
+          <div class="typing-input-wrap">
+            <div class="box-caption">
+              <span>Candidate Typing Area (Backspace &amp; Arrow Keys Enabled | Copy/Paste Disabled)</span>
+              <span style="color:#e65100; font-weight:700;">Active Input Box</span>
+            </div>
+            <textarea
+              id="typing-textarea"
+              class="typing-textarea"
+              placeholder="Start typing the passage above accurately here..."
+              spellcheck="false"
+              autocomplete="off"
+              autocorrect="off"
+              autocapitalize="off"
+              onpaste="handleBlockedClipboard(event, 'Paste')"
+              oncopy="handleBlockedClipboard(event, 'Copy')"
+              oncut="handleBlockedClipboard(event, 'Cut')"
+              ondrop="handleBlockedClipboard(event, 'Drag & Drop')"
+              oncontextmenu="return false"
+            ></textarea>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- RIGHT COLLAPSIBLE SIDEBAR -->
+    <aside id="exam-right-sidebar" class="exam-right-sidebar">
+      <button type="button" id="sidebar-toggle-btn" class="sidebar-toggle-btn" title="Collapse / Expand Sidebar" onclick="toggleExamSidebar()">&gt;</button>
+      <div class="sidebar-inner">
+        <!-- Candidate Profile -->
+        <div class="cand-mini-profile">
+          <div class="cand-mini-avatar" id="avatar-exam"></div>
+          <div class="cand-mini-info">
+            <div class="cand-mini-name" id="profile-name-exam">Candidate</div>
+            <div class="cand-mini-id" id="profile-id-exam">OSSSC-2025-0000</div>
+          </div>
+        </div>
+
+        <!-- SIDEBAR CONTENT FOR SECTION 1 (MCQ PALETTE) -->
+        <div id="sidebar-mcq-content" style="display:flex; flex-direction:column; flex:1; min-height:0;">
+          <div class="palette-legend">
+            <div class="legend-item">
+              <span class="sym sym-sm sym-answered" id="cnt-answered">0</span>
+              <span>Answered</span>
+            </div>
+            <div class="legend-item">
+              <span class="sym sym-sm sym-not-answered" id="cnt-not-answered">0</span>
+              <span>Not Answered</span>
+            </div>
+            <div class="legend-item">
+              <span class="sym sym-sm sym-not-visited" id="cnt-not-visited">20</span>
+              <span>Not Visited</span>
+            </div>
+            <div class="legend-item">
+              <span class="sym sym-sm sym-marked" id="cnt-marked">0</span>
+              <span>Marked for Review</span>
+            </div>
+            <div class="legend-item full-span">
+              <span class="sym-ans-marked-wrap sym-sm-wrap">
+                <span class="sym-ans-marked" id="cnt-ans-marked">0</span>
+                <span class="sym-green-dot">&#10003;</span>
+              </span>
+              <span>Answered &amp; Marked for Review (will be considered for evaluation)</span>
+            </div>
+          </div>
+
+          <div class="palette-sec-title">Computer Skill MCQ</div>
+          <div class="palette-grid-wrap">
+            <div class="palette-choose-lbl">Choose a Question</div>
+            <div class="palette-grid" id="mcq-palette-grid"></div>
+          </div>
+
+          <div class="sidebar-submit-box">
+            <button type="button" class="tcs-btn tcs-btn-primary" onclick="openSectionSubmitModal()">Submit Section 1</button>
+          </div>
+        </div>
+
+        <!-- SIDEBAR CONTENT FOR SECTIONS 2 & 3 (TYPING LIVE STATS) -->
+        <div id="sidebar-typing-content" class="hidden" style="display:flex; flex-direction:column; flex:1; min-height:0;">
+          <div class="palette-sec-title" id="sidebar-typing-title">Typing Test 1 &mdash; Live Stats</div>
+          <div class="typing-stats-list">
+            <div class="stat-counter-row">
+              <span class="stat-counter-lbl">Keystrokes Count</span>
+              <span class="stat-counter-val" id="stat-keystrokes">0</span>
+            </div>
+            <div class="stat-counter-row">
+              <span class="stat-counter-lbl">Backspace Count</span>
+              <span class="stat-counter-val" id="stat-backspaces">0</span>
+            </div>
+            <div class="stat-counter-row">
+              <span class="stat-counter-lbl">Total Word Count</span>
+              <span class="stat-counter-val" id="stat-total-words">0</span>
+            </div>
+            <div class="stat-counter-row">
+              <span class="stat-counter-lbl">Typed Word Count</span>
+              <span class="stat-counter-val" id="stat-typed-words">0</span>
+            </div>
+            <div class="stat-counter-row">
+              <span class="stat-counter-lbl">Pending Word Count</span>
+              <span class="stat-counter-val" id="stat-pending-words">0</span>
+            </div>
+
+            <div class="typing-side-notes">
+              <strong>Typing Instructions:</strong>
+              <ul>
+                <li>Type the passage accurately in the white box with the orange border.</li>
+                <li>No error hints or word highlights appear during the test.</li>
+                <li>Use <strong>Backspace</strong> or Arrow keys to correct mistakes.</li>
+                <li>Do not press Refresh/Back; timer auto-submits at 00:00.</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="sidebar-submit-box">
+            <button type="button" id="btn-typing-submit" class="tcs-btn tcs-btn-teal" onclick="openSectionSubmitModal()">Submit Typing Test 1</button>
+          </div>
+        </div>
+      </div>
+    </aside>
+  </div>
+</div>
+
+<!-- ==================== SCREEN 3: SCORECARD & ID-LINKED ATTEMPT HISTORY ==================== -->
+<div id="screen-3" class="screen hidden">
+  <header class="tcs-header no-print">
+    <div class="tcs-header-left">
+      <span class="tcs-logo-badge">TCS iON</span>
+      <span class="tcs-exam-title">OSSSC CRE (I) 2025 — Skill Test Scorecard &amp; Attempt History</span>
+      <span class="tcs-brand-tag">By Study World (Jagannath Dash)</span>
+    </div>
+    <div class="tcs-header-right">
+      <span style="font-size:12px; opacity:0.9;">Official 5-Char Word Evaluation Engine</span>
+    </div>
+  </header>
+
+  <div class="scorecard-container">
+    <!-- Candidate Banner -->
+    <div class="sc-hero-banner">
+      <div class="sc-hero-cand">
+        <div class="sc-hero-avatar" id="avatar-sc"></div>
+        <div>
+          <div style="font-size:18px; font-weight:800; display:flex; align-items:center; flex-wrap:wrap; gap:6px;">
+            <span id="sc-cand-name">Candidate Name</span>
+            <span id="sc-hero-qual-badge" class="hero-qual-badge pass">0.00 / 50.00</span>
+          </div>
+          <div style="font-size:13px; margin-top:3px; opacity:0.95;">
+            Candidate ID: <strong id="sc-cand-id" style="font-family:'Courier New',monospace; background:rgba(255,255,255,0.2); padding:2px 8px; border-radius:3px;">OSSSC-2025-0000</strong>
+            &nbsp;|&nbsp; Viewing: <strong id="sc-viewing-attempt">Attempt #1</strong>
+            &nbsp;|&nbsp; <span id="sc-attempt-time"></span>
+          </div>
+          <div style="font-size:11.5px; opacity:0.85; margin-top:3px;">OSSSC CRE (I) 2025 Computer Skill Test (Mock Test - 1) &bull; By Study World (Jagannath Dash)</div>
+        </div>
+      </div>
+
+      <div class="sc-hero-actions no-print">
+        <button type="button" class="tcs-btn tcs-btn-teal" onclick="reattemptSameCandidate()">&#x21bb; Re-attempt Test</button>
+        <button type="button" class="tcs-btn tcs-btn-default" onclick="downloadScorecardTxt()">&#11015; Download Report (.txt)</button>
+        <button type="button" class="tcs-btn tcs-btn-default" onclick="window.print()">&#128424; Print / Save PDF</button>
+        <button type="button" class="tcs-btn tcs-btn-default" onclick="switchCandidateHome()">Switch Candidate ID</button>
+      </div>
+    </div>
+
+    <!-- Attempt History Comparison Table -->
+    <div class="sc-card">
+      <div class="sc-card-title">
+        <span>Attempt History Comparison &mdash; Candidate ID: <span id="hist-cand-id-lbl" style="font-family:'Courier New',monospace;"></span></span>
+        <span style="font-size:12px; font-weight:600; color:#546e7a;">Click any attempt to inspect its full typing error diff &amp; MCQ solutions below</span>
+      </div>
+      <div class="table-responsive">
+        <table class="sc-table">
+          <thead>
+            <tr>
+              <th>Attempt</th>
+              <th>Date &amp; Time</th>
+              <th>MCQ (/20)</th>
+              <th>Typing 1 Marks (/15)</th>
+              <th>Typing 1 WPM / Acc</th>
+              <th>Typing 2 Marks (/15)</th>
+              <th>Typing 2 WPM / Acc</th>
+              <th>Total Secured (/50)</th>
+              <th>Status</th>
+              <th class="no-print">Inspect</th>
+            </tr>
+          </thead>
+          <tbody id="attempt-history-tbody"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Summary KPI Cards -->
+    <div class="sc-kpi-grid" id="sc-kpi-grid"></div>
+
+    <!-- Typing Formula Penalty Rule Control + Typing 1 & Typing 2 Detailed Cards -->
+    <div class="sc-card">
+      <div class="sc-card-title">
+        <span>Section 2 &mdash; Typing Test 1 Evaluation &amp; Post-Test Error Review</span>
+        <div class="penalty-toggle-bar no-print">
+          <span>Net WPM Penalty Rule:</span>
+          <button type="button" id="pen-btn-5x" class="penalty-btn active" onclick="setPenaltyMultiplier(5)">Standard 5&times; Rule</button>
+          <button type="button" id="pen-btn-10x" class="penalty-btn" onclick="setPenaltyMultiplier(10)">Strict 10&times; Preview</button>
+        </div>
+      </div>
+      <div id="typing1-scorecard-body"></div>
+    </div>
+
+    <div class="sc-card">
+      <div class="sc-card-title">
+        <span>Section 3 &mdash; Typing Test 2 Evaluation &amp; Post-Test Error Review</span>
+        <span id="typing2-pen-badge" style="font-size:12px; font-weight:700; color:#1c5577;">Active Formula: 5&times; Error Penalty</span>
+      </div>
+      <div id="typing2-scorecard-body"></div>
+    </div>
+
+    <!-- Section 1: 20 MCQs Review & Verified Explanations -->
+    <div class="sc-card">
+      <div class="sc-card-title">
+        <span>Section 1 &mdash; Computer Knowledge MCQ Detailed Solutions (20 Questions)</span>
+        <div class="filter-bar no-print" id="mcq-sol-filters">
+          <button type="button" class="filter-btn active" onclick="setMcqFilter('all')">All (20)</button>
+          <button type="button" class="filter-btn" onclick="setMcqFilter('correct')">Correct</button>
+          <button type="button" class="filter-btn" onclick="setMcqFilter('wrong')">Wrong</button>
+          <button type="button" class="filter-btn" onclick="setMcqFilter('skipped')">Unattempted</button>
+        </div>
+      </div>
+      <div id="mcq-solutions-list"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== MODALS ==================== -->
+<div id="modal-backdrop" class="modal-backdrop hidden">
+  <div id="modal-box" class="modal-box">
+    <div class="modal-header">
+      <span id="modal-title">Confirmation</span>
+      <button type="button" class="modal-close" onclick="closeModal()">&times;</button>
+    </div>
+    <div class="modal-body" id="modal-body"></div>
+    <div class="modal-footer" id="modal-footer"></div>
+  </div>
+</div>
+
+<!-- Toast Notification -->
+<div id="toast-msg" class="toast-msg hidden"></div>
+
+<script>
+// ==================== EMBEDDED EXAM DATA ====================
+const MCQ_QUESTIONS = [
+  {
+    "id": 1,
+    "topic": "Internet & Browsers",
+    "question": "An employee working in a Tahasil office needs to download a heavy cadastral map file from the state portal, but every time the browser is closed, the download fails and must restart from 0%. Which browser feature or tool will best ensure resume support for large file downloads over an unstable broadband connection?",
+    "options": [
+      "Incognito Browsing window",
+      "Built-in Downloads manager with resume capability or a dedicated download manager extension",
+      "Clearing browsing cache before downloading",
+      "Changing the default homepage in browser settings"
+    ],
+    "answer": 1,
+    "explanation": "Modern browser download managers or specialized download tools support multi-part chunking and HTTP range requests, allowing interrupted large downloads to resume from where they stopped rather than starting over."
+  },
+  {
+    "id": 2,
+    "topic": "Internet & Security",
+    "question": "A user notices that when visiting their webmail portal, the browser displays a red warning reading \"Your connection is not private\" with an error code NET::ERR_CERT_DATE_INVALID. Which of the following is the most common client-side reason for this issue?",
+    "options": [
+      "The monitor brightness is set too high",
+      "The local computer system date and time are incorrect, causing the SSL/TLS digital certificate validity check to fail",
+      "The keyboard layout is set to a regional language",
+      "The computer has run out of RAM memory"
+    ],
+    "answer": 1,
+    "explanation": "Web browsers validate the expiry dates of SSL/TLS certificates against the client system clock. An incorrect local date or time makes valid certificates appear expired or not yet valid."
+  },
+  {
+    "id": 3,
+    "topic": "MS Word",
+    "question": "While drafting an official notification in MS Word, an assistant needs to ensure that hyphenated words or specific compound numbers (such as \"Rule-14\") do not break across two separate lines at the right margin. Which key combination should be inserted instead of a regular hyphen?",
+    "options": [
+      "Shift + Enter",
+      "Ctrl + Shift + Hyphen (Non-breaking hyphen)",
+      "Alt + Ctrl + Minus",
+      "Ctrl + Spacebar"
+    ],
+    "answer": 1,
+    "explanation": "In MS Word, pressing Ctrl + Shift + Hyphen inserts a non-breaking hyphen, preventing the connected words or numbers from splitting across line ends."
+  },
+  {
+    "id": 4,
+    "topic": "MS Word",
+    "question": "In MS Word, an officer wants to view two different non-consecutive sections of a 60-page circular simultaneously on the screen without opening a second instance of the file. Which feature on the View tab should be used?",
+    "options": [
+      "New Window",
+      "Split Window",
+      "Switch Windows",
+      "Synchronous Scrolling"
+    ],
+    "answer": 1,
+    "explanation": "Clicking 'Split' under the View tab divides the active document window horizontally into two resizable panes, allowing independent scrolling within the same document."
+  },
+  {
+    "id": 5,
+    "topic": "MS Excel",
+    "question": "An assistant is preparing a land parcel register in MS Excel. Column A contains tenant names, and Column B contains plot sizes in decimals. To highlight all plots larger than 50 decimals with a light green fill automatically as new data is keyed in, which feature should be configured?",
+    "options": [
+      "Data Validation → Circle Invalid Data",
+      "Conditional Formatting → Highlight Cells Rules → Greater Than",
+      "Format Cells → Custom Number format",
+      "AutoCorrect Options"
+    ],
+    "answer": 1,
+    "explanation": "Under Home → Conditional Formatting → Highlight Cells Rules → Greater Than, entering 50 and choosing a fill color dynamically styles existing and newly entered qualifying values."
+  },
+  {
+    "id": 6,
+    "topic": "MS Excel",
+    "question": "In MS Excel, a ledger table contains Revenue figures in Column D and Collection Target in Column E. In cell F2, which formula will correctly display \"Achieved\" if Revenue is greater than or equal to Target, and \"Pending\" otherwise?",
+    "options": [
+      "=IF(D2>=E2, Achieved, Pending)",
+      "=IF(D2>=E2; \"Achieved\"; \"Pending\")",
+      "=IF(D2>=E2, \"Achieved\", \"Pending\")",
+      "=CHECK(D2>=E2, \"Achieved\", \"Pending\")"
+    ],
+    "answer": 2,
+    "explanation": "The IF function syntax in Excel is =IF(logical_test, value_if_true, value_if_false). String outputs must be enclosed in double quotes and arguments separated by standard commas."
+  },
+  {
+    "id": 7,
+    "topic": "MS Excel",
+    "question": "In MS Excel, an assistant enters the formula =COUNTBLANK(A1:A10). If cells A1 to A5 contain numbers, A6 contains text \"Nil\", A7 contains an apostrophe (') with no visible characters, and A8 to A10 are untouched, how many cells does this function return as blank?",
+    "options": [
+      "3",
+      "4",
+      "5",
+      "2"
+    ],
+    "answer": 1,
+    "explanation": "COUNTBLANK treats empty cells (A8, A9, A10) and cells containing empty text/apostrophe-only entries (A7) as blank cells, counting a total of 4 cells."
+  },
+  {
+    "id": 8,
+    "topic": "MS PowerPoint",
+    "question": "During a district collectorate presentation in MS PowerPoint, the speaker needs to jump directly to a hidden summary slide when clicking a specific graphic on Slide 4. Which feature must be applied to that graphic?",
+    "options": [
+      "Custom Animation → Exit effect",
+      "Insert → Action or Hyperlink → Link to Slide",
+      "Transitions → Morph",
+      "Slide Sorter → Reorder"
+    ],
+    "answer": 1,
+    "explanation": "Adding an Action (or Hyperlink) to a shape or graphic allows the presenter to navigate directly to any specified slide (including hidden slides) upon click."
+  },
+  {
+    "id": 9,
+    "topic": "MS PowerPoint",
+    "question": "In MS PowerPoint, you want to record verbal commentary along with on-screen laser pointer movements while running through slides so that the presentation can be exported as a self-explanatory training video. Which tool under the Slide Show tab should you use?",
+    "options": [
+      "Rehearse Timings only",
+      "Record Slide Show",
+      "Set Up Slide Show",
+      "Custom Slide Show"
+    ],
+    "answer": 1,
+    "explanation": "'Record Slide Show' records voice narrations, slide transition timings, digital ink annotations, and laser gestures synchronised with each slide."
+  },
+  {
+    "id": 10,
+    "topic": "MS Access",
+    "question": "A database operator in MS Access needs to create a form where a main customer's details appear in the top pane, and all land parcels owned by that customer appear in an embedded grid underneath. Which form element is used to achieve this parent-child relationship display?",
+    "options": [
+      "Split Form with Pivot",
+      "Subform (Main Form / Subform combination)",
+      "Modal Dialog Form",
+      "Parameterized Query form"
+    ],
+    "answer": 1,
+    "explanation": "A Subform is a form inserted within a parent form, linked by matching Primary Key/Foreign Key fields to show one-to-many related records simultaneously."
+  },
+  {
+    "id": 11,
+    "topic": "MS Access",
+    "question": "In MS Access, which field data type should be chosen for storing uploaded digital scanned copy PDFs of land deeds (patta documents) within a table row?",
+    "options": [
+      "Short Text",
+      "Attachment",
+      "Large Number",
+      "Calculated"
+    ],
+    "answer": 1,
+    "explanation": "The 'Attachment' data type is optimized in modern versions of MS Access to store binary files, images, spreadsheets, and PDF documents directly inside records."
+  },
+  {
+    "id": 12,
+    "topic": "MS Word",
+    "question": "In MS Word, an assistant accidentally pressed a shortcut and now all spaces appear as dots (·), paragraph breaks appear as pilcrow symbols (¶), and tabs appear as arrows (→). Which shortcut toggles these non-printing characters off?",
+    "options": [
+      "Ctrl + Shift + * (or Ctrl + Shift + 8)",
+      "Ctrl + Shift + P",
+      "Alt + Shift + S",
+      "Ctrl + F8"
+    ],
+    "answer": 0,
+    "explanation": "Ctrl + Shift + * (the asterisk key, activated via Shift + 8) toggles the display of hidden non-printing formatting characters (Show/Hide ¶ icon on the Home tab)."
+  },
+  {
+    "id": 13,
+    "topic": "MS Excel",
+    "question": "In MS Excel, you need to extract the leftmost 4 characters of a Khata number code stored in cell A2 as \"2025-ANG-04\". Which text formula should be written?",
+    "options": [
+      "=MID(A2, 1, 4)",
+      "=LEFT(A2, 4)",
+      "=SUBSTRING(A2, 1, 4)",
+      "Both 1 and 2 are correct"
+    ],
+    "answer": 3,
+    "explanation": "Both =LEFT(A2, 4) and =MID(A2, 1, 4) return the first 4 characters starting from position 1 (\"2025\")."
+  },
+  {
+    "id": 14,
+    "topic": "MS Excel",
+    "question": "In MS Excel, an accounts clerk wants to freeze both the top 2 header rows AND the first column (Column A) simultaneously so that both remain visible during scrolling. Which cell must the clerk select before clicking View → Freeze Panes → Freeze Panes?",
+    "options": [
+      "A2",
+      "B2",
+      "B3",
+      "C2"
+    ],
+    "answer": 2,
+    "explanation": "When using custom Freeze Panes, Excel freezes everything above and to the left of the active cell. To freeze Rows 1–2 and Column A, the cursor must be placed in cell B3."
+  },
+  {
+    "id": 15,
+    "topic": "Internet & Cloud",
+    "question": "You receive an official circular as an attachment in Gmail. Instead of downloading it to the local hard drive, you click the \"Add to Drive\" icon. Where does this file get stored?",
+    "options": [
+      "Windows Temporary Folder",
+      "Cloud storage associated with your linked Google account",
+      "Desktop Recycle Bin",
+      "Local Downloads directory"
+    ],
+    "answer": 1,
+    "explanation": "The \"Add to Drive\" button in Gmail transfers the attachment directly from the email message to the user's cloud Google Drive storage without consuming local computer hard drive space."
+  },
+  {
+    "id": 16,
+    "topic": "Windows & Networking",
+    "question": "An administrative user needs to check whether a remote revenue portal server is reachable over the network and measure the round-trip latency in milliseconds. Which command line utility in Windows Command Prompt should be run?",
+    "options": [
+      "netstat",
+      "ping <portal_address>",
+      "ipconfig /flushdns",
+      "nslookup"
+    ],
+    "answer": 1,
+    "explanation": "The 'ping' command sends ICMP Echo Request packets to the specified destination host and displays transmission times, packet loss percentage, and round-trip latency."
+  },
+  {
+    "id": 17,
+    "topic": "MS PowerPoint",
+    "question": "In MS PowerPoint, what happens if an object is selected and the user assigns an animation from the 'Exit' category (red star icon)?",
+    "options": [
+      "The presentation ends and returns to Normal View",
+      "The selected object animates off the slide canvas and disappears from view during the slide show",
+      "The object spins in place to draw attention",
+      "The slide closes immediately"
+    ],
+    "answer": 1,
+    "explanation": "In PowerPoint animations, Entrance effects (green) bring an object into view, Emphasis effects (yellow) highlight it in place, and Exit effects (red) animate the object leaving or disappearing from the slide."
+  },
+  {
+    "id": 18,
+    "topic": "MS Access & SQL",
+    "question": "In MS Access, a query has been designed to extract citizen records where Gender is \"Female\" AND District is \"Cuttack\" OR \"Khurda\". Which logical expression in SQL represents this correctly?",
+    "options": [
+      "WHERE Gender = \"Female\" AND (District = \"Cuttack\" OR District = \"Khurda\")",
+      "WHERE Gender = \"Female\" AND District = \"Cuttack\" OR District = \"Khurda\"",
+      "WHERE Gender = \"Female\" OR District = \"Cuttack\" AND District = \"Khurda\"",
+      "WHERE (Gender = \"Female\" OR District = \"Cuttack\") AND District = \"Khurda\""
+    ],
+    "answer": 0,
+    "explanation": "Parentheses are required around the OR conditions so that the Gender = \"Female\" requirement applies to residents of both Cuttack and Khurda. Without parentheses, Option 2 would incorrectly return all residents of Khurda regardless of gender."
+  },
+  {
+    "id": 19,
+    "topic": "MS Word",
+    "question": "In MS Word, which feature allows you to save frequently used standardized paragraphs, signatures, or official header text as reusable blocks that can be quickly inserted by typing a short trigger code or choosing from a gallery?",
+    "options": [
+      "Mail Merge",
+      "AutoText / Quick Parts",
+      "Smart Lookup",
+      "Track Changes"
+    ],
+    "answer": 1,
+    "explanation": "Under Insert → Quick Parts → AutoText, users can store reusable document building blocks that can be populated anywhere in the document with minimal keystrokes."
+  },
+  {
+    "id": 20,
+    "topic": "MS Excel",
+    "question": "In MS Excel, if an operator types the formula =100+50*2/10 in cell C1, what numerical result will Excel compute and display?",
+    "options": [
+      "30",
+      "110",
+      "10",
+      "150"
+    ],
+    "answer": 1,
+    "explanation": "Following operator precedence rules (BODMAS/PEMDAS), multiplication and division have higher priority than addition and evaluate left to right: 50*2 = 100, then 100/10 = 10, and finally 100 + 10 = 110."
+  }
+];
+
+const TYPING_PASSAGES = {
+  1: {
+    title: "Paragraph 1 — Digital Governance & Revenue Administration in Odisha",
+    text: "Digital governance has changed how public offices serve citizens in Odisha over the last ten years. Routine revenue tasks that once took many visits to a local Tahasil office are now handled online in a clear, open, and timely manner. People who need a certified copy of their land record can download it from the Bhulekh portal or visit a nearby Common Service Centre without losing a full day of work. Village land maps, plot mutation files, and land tax receipts are now stored in central databases so that Revenue Inspectors and Junior Clerks can check ownership claims with high speed and accuracy. This digital shift cuts down heavy paper files and leaves a clean audit trail for every application sent from a village office to the district headquarters.\n\nAt the core of smooth office administration lies neat data entry and careful record keeping. When a citizen files an online request for a caste, residence, or income certificate through the e-District portal, the dealing clerk must check each scanned proof, name spelling, and address line before moving the file to the signing officer. Even a minor typing slip in a name, plot code, Khata number, or date can stall a lawful claim and force a family to submit a fresh plea later. For this reason, steady typing speed and sound computer skill are key needs for every new employee who joins state service. Daily command over word files, Excel sheets, official mail rules, and safe web tools helps clerks draft clean circulars, verify monthly tables, and maintain neat registers with zero layout errors.\n\nGood cyber habits are just as vital inside every government office. Staff who handle citizen records must verify that the system clock shows the right date so web security certificates load without warning. They must also keep strong passwords, skip unknown links, and store verified backups on a safe drive each week. Short training workshops held at block and district halls help staff adopt new software tools, fix table formulas, and address public grievances with care. Each clerk should also check daily inward mail, update dispatch logs on time, and label digital folders by year and subject so any senior officer can trace a file in seconds. As high speed fiber lines connect remote gram panchayats across the state, skilled ministerial staff serve as the true human bridge between modern tools and fair local rule. When accurate office work joins polite citizen support at the counter, public desks earn lasting trust and ensure that welfare aid reaches every home on time."
+  },
+  2: {
+    title: "Paragraph 2 — Disaster Preparedness & Rural Resilience in Odisha",
+    text: "Strong disaster readiness and safe rural works stand among the most noted gains of public governance in Odisha. Because the long sea coast along the Bay of Bengal faces cyclic storms and heavy monsoon rain every year, state agencies have built a clear model based on early alerts, timely shift of families, and active village help. Long before a deep cyclone hits the shore, weather bulletins are turned into plain action notes for District Collectors, Block Officers, and local panchayat leaders. Multi purpose cyclone shelters are stocked with dry rations, clean drinking water, solar hand lamps, and basic medical kits so that coastal families can move to safe rooms in a calm and orderly way.\n\nSmooth team work across departments during an emergency rests on clear phone lines, valid data sheets, and quick field logs. Round the clock control rooms gather village updates on rain depth, river water levels, road cuts, and power line repairs using fixed report forms and shared Excel charts. Junior Clerks and field staff play a vital role behind the desk by listing relief needs, checking ration rolls, making payment bills, and filing damage reports sent in by Revenue Inspectors. Clean files right after a storm help senior officers release home repair grants, crop loss aid, and school repair funds to the right hands with zero waste, delay, or mix up. Accurate tally sheets also help state auditors check every rupee spent on public relief with full ease and clarity.\n\nBeyond quick storm care, long term safety needs steady public work on farm canals, clean tap water lines, all weather roads, and climate smart farming. Helping small farm families grow flood safe paddy, rich local millets, and test soil health keeps village incomes firm even when monsoon rain arrives late or falls too hard. Women self help groups and village boards back child meal schemes, clean street drives, and local market stalls that keep rural trade active all year round. School teachers, health workers, and block clerks also join local drives to teach safe water use and basic storm drills before each wet season starts. Every local office keeps a neat contact sheet of boat teams, doctors, and ward heads so help can start within an hour. When smart planning links solid science with honest field checks, state offices not only save precious lives during severe weather but also foster fair growth across both coastal plains and highland blocks. Neat records and timely desk work keep every welfare plan open, fast, and dependable for every household."
+  }
+};
+
+const STORAGE_KEY = "osssc_cre_2025_cst_studyworld_v1";
+const SECTION_DURATIONS = { 1: 20 * 60, 2: 15 * 60, 3: 15 * 60 }; // seconds
+
+// ==================== AVATAR SVG ====================
+const AVATAR_SVG = `<svg viewBox="0 0 64 64" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+  <rect width="64" height="64" fill="#dfeef7"/>
+  <circle cx="32" cy="24" r="12" fill="#5c85a6"/>
+  <path d="M12 58 C12 44, 52 44, 52 58 Z" fill="#5c85a6"/>
+</svg>`;
+
+// ==================== APPLICATION STATE ====================
+let state = {
+  candidateId: "",
+  candidateName: "",
+  activeSection: 1, // 1=MCQ, 2=Typing1, 3=Typing2
+  timerSeconds: 0,
+  timerInterval: null,
+  sectionStartTime: null,
+
+  // MCQ State (Strict TCS iON model)
+  currentQ: 0,
+  tempSelection: null,
+  mcqStatus: [],   // 'not-visited' | 'not-answered' | 'answered' | 'marked' | 'ans-marked'
+  mcqAnswers: [],  // null or 0..3
+  mcqTimeTakenSec: 0,
+
+  // Typing State
+  typingZoomPx: 17,
+  typing1: { text: "", backspaces: 0, timeTakenSec: 0 },
+  typing2: { text: "", backspaces: 0, timeTakenSec: 0 },
+
+  // Scorecard View State
+  viewingAttemptNo: null,
+  penaltyMultiplier: 5, // 5 or 10
+  mcqFilter: "all"
+};
+
+// ==================== LOCALSTORAGE DATABASE HELPERS ====================
+function loadDB() {
+  try {
+    const raw = localStorage.getItem(STORAGE_KEY);
+    if (!raw) return { candidates: {} };
+    const parsed = JSON.parse(raw);
+    if (!parsed || typeof parsed !== "object" || !parsed.candidates) return { candidates: {} };
+    return parsed;
+  } catch (e) {
+    return { candidates: {} };
+  }
+}
+
+function saveDB(db) {
+  try {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(db));
+  } catch (e) {
+    showToast("Warning: Could not write to localStorage.");
+  }
+}
+
+function getCandidateRecord(cid) {
+  const db = loadDB();
+  return db.candidates[cid] || null;
+}
+
+function generateUniqueCandidateId() {
+  const db = loadDB();
+  let id = "";
+  let tries = 0;
+  do {
+    const rand = Math.floor(1000 + Math.random() * 9000);
+    id = "OSSSC-2025-" + rand;
+    tries++;
+  } while (db.candidates[id] && tries < 500);
+  return id;
+}
+
+// ==================== INIT & REGISTRATION ====================
+function initApp() {
+  ["avatar-1a", "avatar-1b", "avatar-exam", "avatar-sc"].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.innerHTML = AVATAR_SVG;
+  });
+
+  state.candidateId = generateUniqueCandidateId();
+  document.getElementById("generated-id-text").textContent = state.candidateId;
+  syncProfileDisplays();
+  renderSavedCandidateChips();
+
+  const nameInput = document.getElementById("cand-name-input");
+  nameInput.addEventListener("input", () => {
+    state.candidateName = nameInput.value.trim();
+    syncProfileDisplays();
+  });
+
+  const textarea = document.getElementById("typing-textarea");
+  textarea.addEventListener("keydown", handleTypingKeydown);
+  textarea.addEventListener("input", handleTypingInput);
+}
+
+function generateFreshCandidateId() {
+  state.candidateId = generateUniqueCandidateId();
+  document.getElementById("generated-id-text").textContent = state.candidateId;
+  document.getElementById("load-id-input").value = "";
+  document.getElementById("btn-view-history-start").classList.add("hidden");
+  hideRegFeedback();
+  syncProfileDisplays();
+  showToast("Generated new Unique Candidate ID: " + state.candidateId);
+}
+
+function syncProfileDisplays() {
+  const displayName = state.candidateName || "Candidate";
+  const displayId = state.candidateId || "OSSSC-2025-0000";
+  ["1a", "1b", "exam"].forEach(sfx => {
+    const nEl = document.getElementById("profile-name-" + sfx);
+    const iEl = document.getElementById("profile-id-" + sfx);
+    if (nEl) nEl.textContent = displayName;
+    if (iEl) iEl.textContent = displayId;
+  });
+  const declInline = document.getElementById("decl-id-inline");
+  if (declInline) declInline.textContent = displayId;
+}
+
+function copyCandidateId() {
+  const text = state.candidateId;
+  const btn = document.getElementById("btn-copy-id");
+  const markCopied = () => {
+    btn.textContent = "Copied!";
+    btn.classList.add("copied");
+    setTimeout(() => {
+      btn.textContent = "Copy ID";
+      btn.classList.remove("copied");
+    }, 1800);
+  };
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(text).then(markCopied).catch(() => fallbackCopy(text, markCopied));
+  } else {
+    fallbackCopy(text, markCopied);
+  }
+}
+
+function fallbackCopy(text, cb) {
+  const ta = document.createElement("textarea");
+  ta.value = text;
+  ta.style.position = "fixed";
+  ta.style.opacity = "0";
+  document.body.appendChild(ta);
+  ta.select();
+  try { document.execCommand("copy"); } catch (e) {}
+  document.body.removeChild(ta);
+  cb();
+}
+
+function renderSavedCandidateChips() {
+  const db = loadDB();
+  const ids = Object.keys(db.candidates);
+  const wrap = document.getElementById("saved-id-chips");
+  if (ids.length === 0) {
+    wrap.classList.add("hidden");
+    return;
+  }
+  wrap.classList.remove("hidden");
+  wrap.innerHTML = `<span style="font-size:11px; color:#546e7a; font-weight:700;">Saved IDs on this browser:</span>` +
+    ids.map(cid => {
+      const rec = db.candidates[cid];
+      const count = rec.attempts ? rec.attempts.length : 0;
+      return `<button type="button" class="saved-id-chip" onclick="loadExistingCandidate('${cid}')">${escapeHtml(cid)} &bull; ${escapeHtml(rec.name)} (${count})</button>`;
+    }).join("");
+}
+
+function loadExistingCandidateByInput() {
+  const raw = document.getElementById("load-id-input").value.trim().toUpperCase();
+  if (!raw) {
+    showRegFeedback("Please enter a Candidate ID (e.g., OSSSC-2025-8492).", true);
+    return;
+  }
+  loadExistingCandidate(raw);
+}
+
+function loadExistingCandidate(cid) {
+  const rec = getCandidateRecord(cid);
+  if (!rec) {
+    showRegFeedback("No saved record found for Candidate ID: " + cid + ". Please check the ID or start with a new ID.", true);
+    document.getElementById("btn-view-history-start").classList.add("hidden");
+    return;
+  }
+  state.candidateId = rec.id;
+  state.candidateName = rec.name;
+  document.getElementById("cand-name-input").value = rec.name;
+  document.getElementById("generated-id-text").textContent = rec.id;
+  document.getElementById("load-id-input").value = rec.id;
+  syncProfileDisplays();
+
+  const attCount = rec.attempts ? rec.attempts.length : 0;
+  showRegFeedback(`Loaded Candidate "${rec.name}" (${rec.id}) — ${attCount} previous attempt(s) found. Ready for Attempt #${attCount + 1}.`, false);
+  const histBtn = document.getElementById("btn-view-history-start");
+  if (attCount > 0) histBtn.classList.remove("hidden");
+  else histBtn.classList.add("hidden");
+}
+
+function showRegFeedback(msg, isErr) {
+  const el = document.getElementById("reg-feedback");
+  el.textContent = msg;
+  el.className = "reg-feedback " + (isErr ? "err" : "ok");
+  el.classList.remove("hidden");
+}
+function hideRegFeedback() {
+  document.getElementById("reg-feedback").classList.add("hidden");
+}
+
+function openSavedHistoryFromStart() {
+  const rec = getCandidateRecord(state.candidateId);
+  if (!rec || !rec.attempts || rec.attempts.length === 0) {
+    showToast("No completed attempts found for this ID.");
+    return;
+  }
+  state.viewingAttemptNo = rec.attempts[rec.attempts.length - 1].attemptNo;
+  showScreen("screen-3");
+  renderScorecardScreen();
+}
+
+// ==================== NAVIGATION BETWEEN SCREENS ====================
+function showScreen(screenId) {
+  ["screen-1a", "screen-1b", "screen-2", "screen-3"].forEach(id => {
+    document.getElementById(id).classList.toggle("hidden", id !== screenId);
+  });
+  window.scrollTo(0, 0);
+}
+
+function goToScreen1B() {
+  const nameVal = document.getElementById("cand-name-input").value.trim();
+  if (!nameVal) {
+    showRegFeedback("Please enter your Candidate Full Name before proceeding.", true);
+    document.getElementById("cand-name-input").focus();
+    return;
+  }
+  state.candidateName = nameVal;
+  syncProfileDisplays();
+
+  const rec = getCandidateRecord(state.candidateId);
+  const nextAttemptNo = rec && rec.attempts ? rec.attempts.length + 1 : 1;
+  document.getElementById("decl-attempt-badge").textContent = "Attempt #" + nextAttemptNo;
+  document.getElementById("decl-checkbox").checked = false;
+  document.getElementById("btn-begin-exam").disabled = true;
+  showScreen("screen-1b");
+}
+
+function goBackToScreen1A() {
+  showScreen("screen-1a");
+}
+
+function toggleBeginButton() {
+  const checked = document.getElementById("decl-checkbox").checked;
+  document.getElementById("btn-begin-exam").disabled = !checked;
+}
+
+// ==================== EXAM START & SECTION CONTROLLER ====================
+function startFullExam() {
+  // Ensure candidate profile is registered in localStorage DB
+  const db = loadDB();
+  if (!db.candidates[state.candidateId]) {
+    db.candidates[state.candidateId] = {
+      id: state.candidateId,
+      name: state.candidateName,
+      createdAt: new Date().toISOString(),
+      attempts: []
+    };
+  } else {
+    db.candidates[state.candidateId].name = state.candidateName;
+  }
+  saveDB(db);
+
+  // Reset exam runtime state
+  state.currentQ = 0;
+  state.tempSelection = null;
+  state.mcqStatus = MCQ_QUESTIONS.map(() => "not-visited");
+  state.mcqAnswers = MCQ_QUESTIONS.map(() => null);
+  state.mcqTimeTakenSec = 0;
+  state.typing1 = { text: "", backspaces: 0, timeTakenSec: 0 };
+  state.typing2 = { text: "", backspaces: 0, timeTakenSec: 0 };
+
+  // Expand sidebar by default
+  const sb = document.getElementById("exam-right-sidebar");
+  sb.classList.remove("collapsed");
+  document.getElementById("sidebar-toggle-btn").innerHTML = "&gt;";
+
+  syncProfileDisplays();
+  showScreen("screen-2");
+  enterSection(1);
+}
+
+function enterSection(secNo) {
+  clearInterval(state.timerInterval);
+  state.activeSection = secNo;
+  state.timerSeconds = SECTION_DURATIONS[secNo];
+  state.sectionStartTime = Date.now();
+
+  updateSectionTabsUI(secNo);
+  updateTimerDisplay();
+
+  const panelMcq = document.getElementById("panel-mcq");
+  const panelTyping = document.getElementById("panel-typing");
+  const sbMcq = document.getElementById("sidebar-mcq-content");
+  const sbTyping = document.getElementById("sidebar-typing-content");
+  const qPaperBtn = document.getElementById("btn-qpaper-modal");
+
+  if (secNo === 1) {
+    panelMcq.classList.remove("hidden");
+    panelTyping.classList.add("hidden");
+    sbMcq.classList.remove("hidden");
+    sbTyping.classList.add("hidden");
+    qPaperBtn.classList.remove("hidden");
+
+    // Visit Q1
+    state.mcqStatus[0] = "not-answered";
+    state.currentQ = 0;
+    state.tempSelection = null;
+    renderCurrentMcq();
+    renderMcqPalette();
+  } else {
+    panelMcq.classList.add("hidden");
+    panelTyping.classList.remove("hidden");
+    sbMcq.classList.add("hidden");
+    sbTyping.classList.remove("hidden");
+    qPaperBtn.classList.add("hidden");
+
+    const passNum = secNo === 2 ? 1 : 2;
+    const pData = TYPING_PASSAGES[passNum];
+    document.getElementById("typing-subtab-label").textContent = "Typing Test " + passNum;
+    document.getElementById("sidebar-typing-title").textContent = "Typing Test " + passNum + " — Live Stats";
+    document.getElementById("passage-box-title").textContent = pData.title + " (Read-Only, Plain Text)";
+    const totalWords = countWords(pData.text);
+    document.getElementById("passage-char-meta").textContent = pData.text.length + " chars | " + totalWords + " words";
+    document.getElementById("typing-passage-box").textContent = pData.text;
+    document.getElementById("typing-passage-box").scrollTop = 0;
+
+    const ta = document.getElementById("typing-textarea");
+    ta.value = "";
+    ta.scrollTop = 0;
+    applyTypingZoom();
+    updateLiveTypingStats();
+    setTimeout(() => ta.focus(), 80);
+
+    document.getElementById("btn-typing-submit").textContent =
+      passNum === 1 ? "Submit Typing Test 1" : "Submit Final Test";
+  }
+
+  state.timerInterval = setInterval(() => {
+    state.timerSeconds--;
+    updateTimerDisplay();
+    if (state.timerSeconds <= 0) {
+      clearInterval(state.timerInterval);
+      handleSectionAutoTimeout();
+    }
+  }, 1000);
+}
+
+function updateSectionTabsUI(secNo) {
+  const t1 = document.getElementById("tab-sec-1");
+  const t2 = document.getElementById("tab-sec-2");
+  const t3 = document.getElementById("tab-sec-3");
+
+  t1.className = "sec-tab " + (secNo === 1 ? "active" : "completed");
+  t1.innerHTML = (secNo > 1 ? "&#10003; " : "") + "Computer Skill MCQ";
+
+  t2.className = "sec-tab " + (secNo === 2 ? "active" : (secNo > 2 ? "completed" : "locked"));
+  t2.innerHTML = (secNo < 2 ? "&#128274; " : (secNo > 2 ? "&#10003; " : "")) + "Mock Computer Typing 1";
+
+  t3.className = "sec-tab " + (secNo === 3 ? "active" : "locked");
+  t3.innerHTML = (secNo < 3 ? "&#128274; " : "") + "Mock Computer Typing 2";
+}
+
+function handleSectionTabClick(targetSec) {
+  if (targetSec === state.activeSection) return;
+  if (targetSec < state.activeSection) {
+    showToast("Completed sections are locked in sequential CST mode.");
+  } else {
+    showToast("Please complete and submit the current section to proceed.");
+  }
+}
+
+function updateTimerDisplay() {
+  const sec = Math.max(0, state.timerSeconds);
+  const mm = String(Math.floor(sec / 60)).padStart(2, "0");
+  const ss = String(sec % 60).padStart(2, "0");
+  document.getElementById("exam-timer-val").textContent = mm + ":" + ss;
+
+  const pill = document.getElementById("exam-timer-pill");
+  pill.classList.remove("warn", "danger");
+  if (sec <= 120) pill.classList.add("danger");
+  else if (sec <= 300) pill.classList.add("warn");
+}
+
+function handleSectionAutoTimeout() {
+  closeModal();
+  if (state.activeSection === 1) {
+    showToast("Section 1 time expired! Auto-advancing to Typing Test 1...");
+    finalizeCurrentSection(true);
+  } else if (state.activeSection === 2) {
+    showToast("Typing Test 1 time expired! Auto-advancing to Typing Test 2...");
+    finalizeCurrentSection(true);
+  } else {
+    showToast("Typing Test 2 time expired! Auto-submitting your exam...");
+    finalizeCurrentSection(true);
+  }
+}
+
+function toggleExamSidebar() {
+  const sb = document.getElementById("exam-right-sidebar");
+  const btn = document.getElementById("sidebar-toggle-btn");
+  const collapsed = sb.classList.toggle("collapsed");
+  btn.innerHTML = collapsed ? "&lt;" : "&gt;";
+}
+
+// ==================== SECTION 1: MCQ LOGIC (AUTHENTIC TCS iON) ====================
+function renderCurrentMcq() {
+  const q = MCQ_QUESTIONS[state.currentQ];
+  document.getElementById("mcq-qno-header").textContent = "Question No. " + q.id;
+  document.getElementById("mcq-topic-pill").textContent = q.topic;
+  document.getElementById("mcq-question-text").textContent = q.question;
+
+  const list = document.getElementById("mcq-options-list");
+  list.innerHTML = q.options.map((optText, idx) => {
+    const isSel = state.tempSelection === idx;
+    return `
+      <label class="mcq-opt-label ${isSel ? 'selected' : ''}" onclick="selectTempOption(${idx})">
+        <input type="radio" name="mcq-opt" value="${idx}" ${isSel ? 'checked' : ''}>
+        <span class="mcq-opt-num">${idx + 1}.</span>
+        <span class="mcq-opt-text">${escapeHtml(optText)}</span>
+      </label>
+    `;
+  }).join("");
+
+  document.getElementById("mcq-scroll-area").scrollTop = 0;
+}
+
+function selectTempOption(idx) {
+  state.tempSelection = idx;
+  const labels = document.querySelectorAll("#mcq-options-list .mcq-opt-label");
+  labels.forEach((lbl, i) => {
+    lbl.classList.toggle("selected", i === idx);
+    const inp = lbl.querySelector("input[type='radio']");
+    if (inp) inp.checked = (i === idx);
+  });
+}
+
+function saveAndNextMcq() {
+  const idx = state.currentQ;
+  if (state.tempSelection !== null) {
+    state.mcqAnswers[idx] = state.tempSelection;
+    state.mcqStatus[idx] = "answered";
+  } else {
+    // If no selection made, stays not-answered (or keeps existing cleared state)
+    if (state.mcqAnswers[idx] === null) state.mcqStatus[idx] = "not-answered";
+  }
+  jumpToMcq((idx + 1) % MCQ_QUESTIONS.length);
+}
+
+function markForReviewAndNext() {
+  const idx = state.currentQ;
+  if (state.tempSelection !== null) {
+    state.mcqAnswers[idx] = state.tempSelection;
+    state.mcqStatus[idx] = "ans-marked";
+  } else {
+    state.mcqAnswers[idx] = null;
+    state.mcqStatus[idx] = "marked";
+  }
+  jumpToMcq((idx + 1) % MCQ_QUESTIONS.length);
+}
+
+function clearMcqResponse() {
+  const idx = state.currentQ;
+  state.tempSelection = null;
+  state.mcqAnswers[idx] = null;
+  state.mcqStatus[idx] = "not-answered";
+  renderCurrentMcq();
+  renderMcqPalette();
+}
+
+// Authentic TCS iON: Jumping via palette does NOT save uncommitted tempSelection!
+function jumpToMcq(targetIdx) {
+  state.currentQ = targetIdx;
+  if (state.mcqStatus[targetIdx] === "not-visited") {
+    state.mcqStatus[targetIdx] = "not-answered";
+  }
+  // Load only the COMMITTED answer into tempSelection
+  state.tempSelection = state.mcqAnswers[targetIdx];
+  renderCurrentMcq();
+  renderMcqPalette();
+}
+
+function getMcqStatusCounts() {
+  const counts = { answered: 0, "not-answered": 0, "not-visited": 0, marked: 0, "ans-marked": 0 };
+  state.mcqStatus.forEach(s => { counts[s] = (counts[s] || 0) + 1; });
+  return counts;
+}
+
+function renderMcqPalette() {
+  const counts = getMcqStatusCounts();
+  document.getElementById("cnt-answered").textContent = counts["answered"];
+  document.getElementById("cnt-not-answered").textContent = counts["not-answered"];
+  document.getElementById("cnt-not-visited").textContent = counts["not-visited"];
+  document.getElementById("cnt-marked").textContent = counts["marked"];
+  document.getElementById("cnt-ans-marked").textContent = counts["ans-marked"];
+
+  const grid = document.getElementById("mcq-palette-grid");
+  grid.innerHTML = MCQ_QUESTIONS.map((q, idx) => {
+    const st = state.mcqStatus[idx];
+    const isCur = idx === state.currentQ ? "current-q" : "";
+    let symHtml = "";
+    if (st === "ans-marked") {
+      symHtml = `<span class="sym-ans-marked-wrap"><span class="sym-ans-marked">${q.id}</span><span class="sym-green-dot">&#10003;</span></span>`;
+    } else {
+      symHtml = `<span class="sym sym-${st}">${q.id}</span>`;
+    }
+    return `<button type="button" class="pal-btn ${isCur}" title="Question ${q.id}" onclick="jumpToMcq(${idx})">${symHtml}</button>`;
+  }).join("");
+}
+
+// ==================== SECTIONS 2 & 3: TYPING HANDLERS ====================
+function adjustTypingZoom(delta) {
+  state.typingZoomPx = Math.min(24, Math.max(13, state.typingZoomPx + delta));
+  applyTypingZoom();
+}
+
+function applyTypingZoom() {
+  document.getElementById("typing-zoom-val").textContent = state.typingZoomPx + "px";
+  document.getElementById("typing-passage-box").style.fontSize = state.typingZoomPx + "px";
+  document.getElementById("typing-textarea").style.fontSize = Math.max(13, state.typingZoomPx - 1) + "px";
+}
+
+function handleBlockedClipboard(e, actionName) {
+  e.preventDefault();
+  showToast(actionName + " is disabled in Real Exam Mode.");
+  return false;
+}
+
+function handleTypingKeydown(e) {
+  // Block Ctrl+V, Ctrl+C, Ctrl+X
+  if ((e.ctrlKey || e.metaKey) && ["v", "c", "x"].includes(e.key.toLowerCase())) {
+    e.preventDefault();
+    showToast("Copy / Paste / Cut shortcuts are disabled in Real Exam Mode.");
+    return;
+  }
+  if (e.key === "Backspace") {
+    if (state.activeSection === 2) state.typing1.backspaces++;
+    else if (state.activeSection === 3) state.typing2.backspaces++;
+    updateLiveTypingStats();
+  }
+}
+
+function handleTypingInput() {
+  const ta = document.getElementById("typing-textarea");
+  if (state.activeSection === 2) state.typing1.text = ta.value;
+  else if (state.activeSection === 3) state.typing2.text = ta.value;
+  updateLiveTypingStats();
+}
+
+function countWords(str) {
+  const trimmed = (str || "").trim();
+  if (!trimmed) return 0;
+  return trimmed.split(/\s+/).length;
+}
+
+function updateLiveTypingStats() {
+  const passNum = state.activeSection === 2 ? 1 : 2;
+  const pText = TYPING_PASSAGES[passNum].text;
+  const tObj = passNum === 1 ? state.typing1 : state.typing2;
+
+  const keystrokes = tObj.text.length;
+  const totalWords = countWords(pText);
+  const typedWords = countWords(tObj.text);
+  const pendingWords = Math.max(0, totalWords - typedWords);
+
+  document.getElementById("stat-keystrokes").textContent = keystrokes;
+  document.getElementById("stat-backspaces").textContent = tObj.backspaces;
+  document.getElementById("stat-total-words").textContent = totalWords;
+  document.getElementById("stat-typed-words").textContent = typedWords;
+  document.getElementById("stat-pending-words").textContent = pendingWords;
+}
+
+// ==================== SECTION SUBMISSION MODALS ====================
+function openSectionSubmitModal() {
+  const sec = state.activeSection;
+  if (sec === 1) {
+    const c = getMcqStatusCounts();
+    const evalCount = c["answered"] + c["ans-marked"];
+    openModal(
+      "Section 1 Exam Summary — Computer Skill MCQ",
+      `<p style="margin-bottom:12px;">Review your Section 1 response summary before proceeding to <strong>Mock Computer Typing 1</strong>. Once submitted, you cannot return to Section 1.</p>
+       <table class="sc-table">
+         <thead>
+           <tr>
+             <th>Section Name</th>
+             <th>Total Qs</th>
+             <th>Answered</th>
+             <th>Not Answered</th>
+             <th>Marked for Review</th>
+             <th>Ans &amp; Marked (Evaluated)</th>
+             <th>Not Visited</th>
+           </tr>
+         </thead>
+         <tbody>
+           <tr>
+             <td><strong>Computer Skill MCQ</strong></td>
+             <td>20</td>
+             <td style="color:#2e7d32; font-weight:700;">${c["answered"]}</td>
+             <td style="color:#c62828; font-weight:700;">${c["not-answered"]}</td>
+             <td style="color:#673ab7; font-weight:700;">${c["marked"]}</td>
+             <td style="color:#673ab7; font-weight:700;">${c["ans-marked"]}</td>
+             <td>${c["not-visited"]}</td>
+           </tr>
+         </tbody>
+       </table>
+       <p style="margin-top:12px; font-size:12.5px; color:#37474f;">Total responses considered for evaluation: <strong>${evalCount} / 20</strong>.</p>`,
+      `<button type="button" class="tcs-btn tcs-btn-default" onclick="closeModal()">No, Return to Section 1</button>
+       <button type="button" class="tcs-btn tcs-btn-primary" onclick="closeModal(); finalizeCurrentSection(false);">Yes, Proceed to Typing Test 1 &gt;</button>`,
+      true
+    );
+  } else {
+    const passNum = sec === 2 ? 1 : 2;
+    const tObj = passNum === 1 ? state.typing1 : state.typing2;
+    const totalW = countWords(TYPING_PASSAGES[passNum].text);
+    const typedW = countWords(tObj.text);
+    const nextLabel = passNum === 1 ? "Proceed to Typing Test 2 &gt;" : "Submit &amp; View Scorecard";
+    openModal(
+      `Confirm Submission — Mock Computer Typing ${passNum}`,
+      `<p style="margin-bottom:12px;">Are you sure you want to submit <strong>Mock Computer Typing ${passNum}</strong>? Once submitted, you cannot edit this passage.</p>
+       <table class="sc-table">
+         <thead>
+           <tr>
+             <th>Keystrokes Typed</th>
+             <th>Backspaces Used</th>
+             <th>Typed Words</th>
+             <th>Pending Words</th>
+             <th>Time Remaining</th>
+           </tr>
+         </thead>
+         <tbody>
+           <tr>
+             <td><strong>${tObj.text.length}</strong></td>
+             <td><strong>${tObj.backspaces}</strong></td>
+             <td><strong>${typedW} / ${totalW}</strong></td>
+             <td><strong>${Math.max(0, totalW - typedW)}</strong></td>
+             <td><strong>${formatMMSS(state.timerSeconds)}</strong></td>
+           </tr>
+         </tbody>
+       </table>`,
+      `<button type="button" class="tcs-btn tcs-btn-default" onclick="closeModal()">No, Continue Typing</button>
+       <button type="button" class="tcs-btn tcs-btn-teal" onclick="closeModal(); finalizeCurrentSection(false);">Yes, ${nextLabel}</button>`,
+      false
+    );
+  }
+}
+
+function finalizeCurrentSection(isTimeout) {
+  clearInterval(state.timerInterval);
+  const elapsed = isTimeout
+    ? SECTION_DURATIONS[state.activeSection]
+    : Math.max(1, SECTION_DURATIONS[state.activeSection] - state.timerSeconds);
+
+  if (state.activeSection === 1) {
+    state.mcqTimeTakenSec = elapsed;
+    enterSection(2);
+  } else if (state.activeSection === 2) {
+    state.typing1.text = document.getElementById("typing-textarea").value;
+    state.typing1.timeTakenSec = elapsed;
+    enterSection(3);
+  } else if (state.activeSection === 3) {
+    state.typing2.text = document.getElementById("typing-textarea").value;
+    state.typing2.timeTakenSec = elapsed;
+    completeAndSaveAttempt();
+  }
+}
+
+// ==================== OFFICIAL 5-CHAR TYPING EVALUATION ENGINE ====================
+function stripOuterPunct(w) {
+  return w.replace(/^[.,;:!?'"()\-]+|[.,;:!?'"()\-]+$/g, "");
+}
+
+function classifyWordPair(refW, typW) {
+  if (refW === typW) {
+    return { type: "ok", cost: 0 };
+  }
+  if (refW.toLowerCase() === typW.toLowerCase()) {
+    return { type: "half_case", cost: 0.5, tag: "Half: Case" };
+  }
+  const rClean = stripOuterPunct(refW);
+  const tClean = stripOuterPunct(typW);
+  if (rClean.length > 0 && rClean === tClean) {
+    return { type: "half_punct", cost: 0.5, tag: "Half: Punct" };
+  }
+  if (rClean.length > 0 && rClean.toLowerCase() === tClean.toLowerCase()) {
+    return { type: "half_case_punct", cost: 0.5, tag: "Half: Case/Punct" };
+  }
+  return { type: "full_wrong", cost: 1.0 };
+}
+
+function evaluateTypingPassage(refText, typedText, timeTakenSec, backspaces) {
+  const refWords = refText.trim().split(/\s+/);
+  const cleanTyped = (typedText || "").trim();
+  const typWords = cleanTyped ? cleanTyped.split(/\s+/) : [];
+
+  const grossKeystrokes = (typedText || "").length;
+  const totalRefWords = refWords.length;
+  const totalTypedWords = typWords.length;
+  const timeMin = Math.max(1, timeTakenSec) / 60;
+
+  // Handle completely empty typing submission gracefully
+  if (totalTypedWords === 0) {
+    return {
+      grossKeystrokes: 0,
+      backspaces: backspaces || 0,
+      timeTakenSec: timeTakenSec || 0,
+      timeMin: timeMin,
+      totalRefWords,
+      totalTypedWords: 0,
+      fullWrong: 0,
+      fullOmitted: 0,
+      fullExtra: 0,
+      fullMistakes: 0,
+      halfCase: 0,
+      halfPunct: 0,
+      halfSpace: 0,
+      halfMistakes: 0,
+      totalErrorWords: 0,
+      refKeystrokes: refText.length,
+      netKeystrokes5x: 0,
+      netKeystrokes10x: 0,
+      maxMarks: 15,
+      securedMarks5x: 0,
+      securedMarks10x: 0,
+      grossWpm: 0,
+      netWpm5x: 0,
+      netWpm10x: 0,
+      accuracy: 0,
+      tokens: refWords.map(w => ({ type: "untyped", ref: w, typed: "" }))
+    };
+  }
+
+  // Dynamic Programming Semi-Global Word Alignment (supports 1-to-1, 1-to-0 omit, 0-to-1 extra, 2-to-1 merge space error, 1-to-2 split space error)
+  const M = refWords.length;
+  const N = typWords.length;
+  const INF = 1e9;
+
+  // Flat typed arrays for speed & minimal memory
+  const dp = new Float32Array((M + 1) * (N + 1));
+  const bt = new Uint8Array((M + 1) * (N + 1));
+  // bt codes: 1=diag(match/sub), 2=up(omit ref), 3=left(extra typ), 4=merge(2 ref -> 1 typ), 5=split(1 ref -> 2 typ)
+  const stride = N + 1;
+
+  for (let i = 0; i <= M; i++) {
+    for (let j = 0; j <= N; j++) {
+      dp[i * stride + j] = INF;
+    }
+  }
+  dp[0] = 0;
+  for (let i = 1; i <= M; i++) {
+    dp[i * stride + 0] = i * 1.0;
+    bt[i * stride + 0] = 2;
+  }
+  for (let j = 1; j <= N; j++) {
+    dp[0 * stride + j] = j * 1.0;
+    bt[0 * stride + j] = 3;
+  }
+
+  for (let i = 1; i <= M; i++) {
+    const rw = refWords[i - 1];
+    const rwLower = rw.toLowerCase();
+    for (let j = 1; j <= N; j++) {
+      const tw = typWords[j - 1];
+      const cls = classifyWordPair(rw, tw);
+
+      let best = dp[(i - 1) * stride + (j - 1)] + cls.cost;
+      let move = 1;
+
+      const omitCost = dp[(i - 1) * stride + j] + 1.0;
+      if (omitCost < best) { best = omitCost; move = 2; }
+
+      const extraCost = dp[i * stride + (j - 1)] + 1.0;
+      if (extraCost < best) { best = extraCost; move = 3; }
+
+      // Merged two reference words into one typed token (Spacing Half Mistake = 0.5)
+      if (i >= 2) {
+        const mergedRef = (refWords[i - 2] + rw).toLowerCase();
+        if (mergedRef === tw.toLowerCase() || stripOuterPunct(mergedRef) === stripOuterPunct(tw.toLowerCase())) {
+          const mCost = dp[(i - 2) * stride + (j - 1)] + 0.5;
+          if (mCost < best) { best = mCost; move = 4; }
+        }
+      }
+
+      // Split one reference word into two typed tokens (Spacing Half Mistake = 0.5)
+      if (j >= 2) {
+        const mergedTyp = (typWords[j - 2] + tw).toLowerCase();
+        if (rwLower === mergedTyp || stripOuterPunct(rwLower) === stripOuterPunct(mergedTyp)) {
+          const sCost = dp[(i - 1) * stride + (j - 2)] + 0.5;
+          if (sCost < best) { best = sCost; move = 5; }
+        }
+      }
+
+      dp[i * stride + j] = best;
+      bt[i * stride + j] = move;
+    }
+  }
+
+  // Semi-global end: pick best reference stop point bestI (so untyped remainder is NOT penalized as omitted errors)
+  let bestI = 0;
+  let bestScore = INF;
+  for (let i = 0; i <= M; i++) {
+    const sc = dp[i * stride + N];
+    if (sc < bestScore || (sc === bestScore && Math.abs(i - N) < Math.abs(bestI - N))) {
+      bestScore = sc;
+      bestI = i;
+    }
+  }
+
+  // Backtrack from (bestI, N) to (0, 0)
+  const aligned = [];
+  let ci = bestI, cj = N;
+  while (ci > 0 || cj > 0) {
+    const mv = bt[ci * stride + cj];
+    if (mv === 1) {
+      const rw = refWords[ci - 1];
+      const tw = typWords[cj - 1];
+      const cls = classifyWordPair(rw, tw);
+      aligned.push({ type: cls.type, ref: rw, typed: tw, tag: cls.tag || "" });
+      ci--; cj--;
+    } else if (mv === 2) {
+      aligned.push({ type: "full_omit", ref: refWords[ci - 1], typed: "" });
+      ci--;
+    } else if (mv === 3) {
+      aligned.push({ type: "full_extra", ref: "", typed: typWords[cj - 1] });
+      cj--;
+    } else if (mv === 4) {
+      aligned.push({ type: "half_space", ref: refWords[ci - 2] + " " + refWords[ci - 1], typed: typWords[cj - 1], tag: "Half: Space" });
+      ci -= 2; cj -= 1;
+    } else if (mv === 5) {
+      aligned.push({ type: "half_space", ref: refWords[ci - 1], typed: typWords[cj - 2] + " " + typWords[cj - 1], tag: "Half: Space" });
+      ci -= 1; cj -= 2;
+    } else {
+      break;
+    }
+  }
+  aligned.reverse();
+
+  // Append remaining untyped words
+  for (let k = bestI; k < M; k++) {
+    aligned.push({ type: "untyped", ref: refWords[k], typed: "" });
+  }
+
+  // Tally Full & Half Mistakes
+  let fullWrong = 0, fullOmitted = 0, fullExtra = 0;
+  let halfCase = 0, halfPunct = 0, halfSpace = 0;
+
+  aligned.forEach(tok => {
+    if (tok.type === "full_wrong") fullWrong++;
+    else if (tok.type === "full_omit") fullOmitted++;
+    else if (tok.type === "full_extra") fullExtra++;
+    else if (tok.type === "half_case") halfCase++;
+    else if (tok.type === "half_punct" || tok.type === "half_case_punct") halfPunct++;
+    else if (tok.type === "half_space") halfSpace++;
+  });
+
+  // Also detect accidental multiple consecutive spaces on same line (not paragraph newlines)
+  const doubleSpaces = (cleanTyped.match(/ {2,}/g) || []).length;
+  halfSpace += doubleSpaces;
+
+  const fullMistakes = fullWrong + fullOmitted + fullExtra;
+  const halfMistakes = halfCase + halfPunct + halfSpace;
+  const totalErrorWords = fullMistakes + 0.5 * halfMistakes;
+
+  const refKeystrokes = refText.length;
+  const maxMarks = 15;
+  const netKeystrokes5x = Math.max(0, grossKeystrokes - (totalErrorWords * 5));
+  const netKeystrokes10x = Math.max(0, grossKeystrokes - (totalErrorWords * 10));
+
+  const grossWpm = (grossKeystrokes / 5) / timeMin;
+  const netWpm5x = (netKeystrokes5x / 5) / timeMin;
+  const netWpm10x = (netKeystrokes10x / 5) / timeMin;
+  const accuracy = totalTypedWords > 0
+    ? Math.max(0, ((totalTypedWords - totalErrorWords) / totalTypedWords) * 100)
+    : 0;
+
+  // Secured Marks out of 15.00 (Proportional Net Valid Keystrokes vs Reference Passage Keystrokes, capped at 15.00)
+  const securedMarks5x = refKeystrokes > 0 ? Math.min(maxMarks, (netKeystrokes5x / refKeystrokes) * maxMarks) : 0;
+  const securedMarks10x = refKeystrokes > 0 ? Math.min(maxMarks, (netKeystrokes10x / refKeystrokes) * maxMarks) : 0;
+
+  return {
+    refKeystrokes,
+    grossKeystrokes,
+    netKeystrokes5x,
+    netKeystrokes10x,
+    maxMarks,
+    securedMarks5x,
+    securedMarks10x,
+    backspaces: backspaces || 0,
+    timeTakenSec,
+    timeMin,
+    totalRefWords,
+    totalTypedWords,
+    fullWrong,
+    fullOmitted,
+    fullExtra,
+    fullMistakes,
+    halfCase,
+    halfPunct,
+    halfSpace,
+    halfMistakes,
+    totalErrorWords,
+    grossWpm,
+    netWpm5x,
+    netWpm10x,
+    accuracy,
+    tokens: aligned
+  };
+}
+
+// ==================== COMPLETE & SAVE ATTEMPT TO LOCALSTORAGE ====================
+function completeAndSaveAttempt() {
+  // Evaluate Section 1 MCQ (both Answered and Answered & Marked are evaluated; +1, 0 neg)
+  let mcqCorrect = 0, mcqWrong = 0, mcqSkipped = 0;
+  const mcqResponses = MCQ_QUESTIONS.map((q, idx) => {
+    const st = state.mcqStatus[idx];
+    const ans = (st === "answered" || st === "ans-marked") ? state.mcqAnswers[idx] : null;
+    if (ans === null) {
+      mcqSkipped++;
+    } else if (ans === q.answer) {
+      mcqCorrect++;
+    } else {
+      mcqWrong++;
+    }
+    return ans;
+  });
+  const mcqAttempted = mcqCorrect + mcqWrong;
+  const mcqAccuracy = mcqAttempted > 0 ? (mcqCorrect / mcqAttempted) * 100 : 0;
+
+  // Evaluate Typing 1 & Typing 2
+  const t1Eval = evaluateTypingPassage(TYPING_PASSAGES[1].text, state.typing1.text, state.typing1.timeTakenSec, state.typing1.backspaces);
+  const t2Eval = evaluateTypingPassage(TYPING_PASSAGES[2].text, state.typing2.text, state.typing2.timeTakenSec, state.typing2.backspaces);
+
+  // Persist into localStorage under Candidate Unique ID
+  const db = loadDB();
+  if (!db.candidates[state.candidateId]) {
+    db.candidates[state.candidateId] = {
+      id: state.candidateId,
+      name: state.candidateName,
+      createdAt: new Date().toISOString(),
+      attempts: []
+    };
+  }
+  const cand = db.candidates[state.candidateId];
+  cand.name = state.candidateName;
+  const attemptNo = cand.attempts.length + 1;
+
+  const attemptRecord = {
+    attemptNo,
+    timestamp: new Date().toLocaleString("en-IN", {
+      day: "2-digit", month: "short", year: "numeric",
+      hour: "2-digit", minute: "2-digit", hour12: true
+    }),
+    mcq: {
+      score: mcqCorrect,
+      maxScore: MCQ_QUESTIONS.length,
+      correct: mcqCorrect,
+      wrong: mcqWrong,
+      skipped: mcqSkipped,
+      accuracy: mcqAccuracy,
+      timeTakenSec: state.mcqTimeTakenSec,
+      responses: mcqResponses
+    },
+    typing1: {
+      rawText: state.typing1.text,
+      backspaces: state.typing1.backspaces,
+      timeTakenSec: state.typing1.timeTakenSec,
+      summary: stripTokens(t1Eval)
+    },
+    typing2: {
+      rawText: state.typing2.text,
+      backspaces: state.typing2.backspaces,
+      timeTakenSec: state.typing2.timeTakenSec,
+      summary: stripTokens(t2Eval)
+    }
+  };
+
+  cand.attempts.push(attemptRecord);
+  saveDB(db);
+
+  state.viewingAttemptNo = attemptNo;
+  state.mcqFilter = "all";
+  showScreen("screen-3");
+  renderScorecardScreen();
+}
+
+function stripTokens(evalObj) {
+  const copy = Object.assign({}, evalObj);
+  delete copy.tokens;
+  return copy;
+}
+
+// ==================== SCREEN 3: SCORECARD & HISTORY RENDERER ====================
+function renderScorecardScreen() {
+  const cand = getCandidateRecord(state.candidateId);
+  if (!cand || !cand.attempts || cand.attempts.length === 0) {
+    showScreen("screen-1a");
+    return;
+  }
+  const attempt = cand.attempts.find(a => a.attemptNo === state.viewingAttemptNo) || cand.attempts[cand.attempts.length - 1];
+  state.viewingAttemptNo = attempt.attemptNo;
+
+  document.getElementById("sc-cand-name").textContent = cand.name;
+  document.getElementById("sc-cand-id").textContent = cand.id;
+  document.getElementById("hist-cand-id-lbl").textContent = cand.id;
+  document.getElementById("sc-viewing-attempt").textContent = "Attempt #" + attempt.attemptNo;
+  document.getElementById("sc-attempt-time").textContent = attempt.timestamp;
+
+  // Helper for backward-compatible typing marks calculation
+  const getTypingMarks = (summary, passNum, multVal) => {
+    if (multVal === 10 && typeof summary.securedMarks10x === "number") return summary.securedMarks10x;
+    if (multVal !== 10 && typeof summary.securedMarks5x === "number") return summary.securedMarks5x;
+    const refLen = TYPING_PASSAGES[passNum].text.length;
+    const netKs = Math.max(0, (summary.grossKeystrokes || 0) - ((summary.totalErrorWords || 0) * multVal));
+    return refLen > 0 ? Math.min(15, (netKs / refLen) * 15) : 0;
+  };
+
+  // Render Attempt History Comparison Table
+  const tbody = document.getElementById("attempt-history-tbody");
+  const mult = state.penaltyMultiplier;
+  tbody.innerHTML = cand.attempts.map(a => {
+    const t1Net = mult === 10 ? a.typing1.summary.netWpm10x : a.typing1.summary.netWpm5x;
+    const t2Net = mult === 10 ? a.typing2.summary.netWpm10x : a.typing2.summary.netWpm5x;
+    const t1Marks = getTypingMarks(a.typing1.summary, 1, mult);
+    const t2Marks = getTypingMarks(a.typing2.summary, 2, mult);
+    const grandTotal = a.mcq.score + t1Marks + t2Marks;
+    const isPass = grandTotal >= 20;
+    const isAct = a.attemptNo === attempt.attemptNo;
+    return `
+      <tr class="${isAct ? 'active-attempt-row' : ''}">
+        <td><strong>Attempt #${a.attemptNo}</strong></td>
+        <td>${escapeHtml(a.timestamp)}</td>
+        <td><strong>${a.mcq.score.toFixed(2)} / ${a.mcq.maxScore}</strong></td>
+        <td style="color:#00695c;"><strong>${t1Marks.toFixed(2)} / 15</strong></td>
+        <td>${t1Net.toFixed(2)} WPM | ${a.typing1.summary.accuracy.toFixed(1)}%</td>
+        <td style="color:#2e7d32;"><strong>${t2Marks.toFixed(2)} / 15</strong></td>
+        <td>${t2Net.toFixed(2)} WPM | ${a.typing2.summary.accuracy.toFixed(1)}%</td>
+        <td style="color:#16476b;"><strong>${grandTotal.toFixed(2)} / 50</strong></td>
+        <td><span class="qual-pill ${isPass ? 'pass' : 'fail'}">${isPass ? 'QUALIFIED' : 'NOT QUALIFIED'}</span></td>
+        <td class="no-print">
+          <button type="button" class="tcs-btn ${isAct ? 'tcs-btn-primary' : 'tcs-btn-default'}" style="padding:4px 10px; font-size:11.5px;" onclick="inspectSavedAttempt(${a.attemptNo})">
+            ${isAct ? 'Viewing' : 'Inspect'}
+          </button>
+        </td>
+      </tr>
+    `;
+  }).join("");
+
+  // Recompute full token diffs for the selected attempt
+  const t1Eval = evaluateTypingPassage(TYPING_PASSAGES[1].text, attempt.typing1.rawText, attempt.typing1.timeTakenSec, attempt.typing1.backspaces);
+  const t2Eval = evaluateTypingPassage(TYPING_PASSAGES[2].text, attempt.typing2.rawText, attempt.typing2.timeTakenSec, attempt.typing2.backspaces);
+
+  const t1Net = mult === 10 ? t1Eval.netWpm10x : t1Eval.netWpm5x;
+  const t2Net = mult === 10 ? t2Eval.netWpm10x : t2Eval.netWpm5x;
+  const t1Marks = mult === 10 ? t1Eval.securedMarks10x : t1Eval.securedMarks5x;
+  const t2Marks = mult === 10 ? t2Eval.securedMarks10x : t2Eval.securedMarks5x;
+  const combinedTypingMarks = t1Marks + t2Marks;
+  const grandTotal = attempt.mcq.score + combinedTypingMarks;
+  const grandPct = (grandTotal / 50) * 100;
+  const isQualified = grandTotal >= 20;
+  const avgNet = (t1Net + t2Net) / 2;
+  const avgAcc = (t1Eval.accuracy + t2Eval.accuracy) / 2;
+
+  const heroBadge = document.getElementById("sc-hero-qual-badge");
+  heroBadge.className = "hero-qual-badge " + (isQualified ? "pass" : "fail");
+  heroBadge.textContent = `Total: ${grandTotal.toFixed(2)} / 50.00 (${grandPct.toFixed(1)}%) — ${isQualified ? 'QUALIFIED' : 'NOT QUALIFIED'}`;
+
+  // Render Top 5 KPI Cards (Grand Total + MCQ + Typing 1 Marks + Typing 2 Marks + Combined Typing)
+  document.getElementById("sc-kpi-grid").innerHTML = `
+    <div class="sc-kpi grand">
+      <div class="sc-kpi-label">Grand Total Marks</div>
+      <div class="sc-kpi-value">${grandTotal.toFixed(2)} <span style="font-size:13px;">/ 50</span></div>
+      <div class="sc-kpi-sub">${grandPct.toFixed(1)}% &bull; <span class="qual-pill ${isQualified ? 'pass' : 'fail'}">${isQualified ? 'QUALIFIED (&ge;40%)' : 'NOT QUALIFIED'}</span></div>
+    </div>
+    <div class="sc-kpi">
+      <div class="sc-kpi-label">Section 1: MCQ Marks</div>
+      <div class="sc-kpi-value">${attempt.mcq.score.toFixed(2)} <span style="font-size:13px;">/ ${attempt.mcq.maxScore}</span></div>
+      <div class="sc-kpi-sub">Correct: ${attempt.mcq.correct} | Wrong: ${attempt.mcq.wrong} | Skipped: ${attempt.mcq.skipped}</div>
+    </div>
+    <div class="sc-kpi teal">
+      <div class="sc-kpi-label">Typing 1 Secured Marks</div>
+      <div class="sc-kpi-value">${t1Marks.toFixed(2)} <span style="font-size:13px;">/ 15</span></div>
+      <div class="sc-kpi-sub">Net: <strong>${t1Net.toFixed(2)} WPM</strong> | Acc: ${t1Eval.accuracy.toFixed(1)}%</div>
+    </div>
+    <div class="sc-kpi green">
+      <div class="sc-kpi-label">Typing 2 Secured Marks</div>
+      <div class="sc-kpi-value">${t2Marks.toFixed(2)} <span style="font-size:13px;">/ 15</span></div>
+      <div class="sc-kpi-sub">Net: <strong>${t2Net.toFixed(2)} WPM</strong> | Acc: ${t2Eval.accuracy.toFixed(1)}%</div>
+    </div>
+    <div class="sc-kpi orange">
+      <div class="sc-kpi-label">Combined Typing Marks</div>
+      <div class="sc-kpi-value">${combinedTypingMarks.toFixed(2)} <span style="font-size:13px;">/ 30</span></div>
+      <div class="sc-kpi-sub">Avg Net: ${avgNet.toFixed(2)} WPM | Avg Acc: ${avgAcc.toFixed(1)}%</div>
+    </div>
+  `;
+
+  // Update Penalty Toggle UI
+  document.getElementById("pen-btn-5x").classList.toggle("active", mult === 5);
+  document.getElementById("pen-btn-10x").classList.toggle("active", mult === 10);
+  document.getElementById("typing2-pen-badge").textContent = `Active Formula: ${mult}× Error Penalty`;
+
+  // Render Typing 1 & Typing 2 Detailed Breakdown + Error Review Boxes
+  document.getElementById("typing1-scorecard-body").innerHTML = buildTypingCardHtml(t1Eval, mult);
+  document.getElementById("typing2-scorecard-body").innerHTML = buildTypingCardHtml(t2Eval, mult);
+
+  // Render MCQ Solutions
+  renderMcqSolutions(attempt);
+}
+
+function buildTypingCardHtml(ev, mult) {
+  const netWpm = mult === 10 ? ev.netWpm10x : ev.netWpm5x;
+  const securedMarks = mult === 10 ? ev.securedMarks10x : ev.securedMarks5x;
+  const penaltyKeystrokes = ev.totalErrorWords * mult;
+  const netKeystrokes = Math.max(0, ev.grossKeystrokes - penaltyKeystrokes);
+  const timeMinStr = ev.timeMin.toFixed(2);
+
+  const diffHtml = ev.tokens.map(tok => {
+    if (tok.type === "ok") {
+      return `<span class="tok-ok">${escapeHtml(tok.ref)}</span> `;
+    } else if (tok.type === "full_wrong") {
+      return `<span class="tok-wrong-wrap"><span class="tok-typed-err">${escapeHtml(tok.typed)}</span><span class="tok-exp">${escapeHtml(tok.ref)}</span></span> `;
+    } else if (tok.type === "full_omit") {
+      return `<span class="tok-omit-wrap"><span style="color:#c62828;font-weight:700;">[Omitted:</span> <span class="tok-exp">${escapeHtml(tok.ref)}</span><span style="color:#c62828;font-weight:700;">]</span></span> `;
+    } else if (tok.type === "full_extra") {
+      return `<span class="tok-extra-wrap">${escapeHtml(tok.typed)}</span> `;
+    } else if (tok.type === "half_case" || tok.type === "half_punct" || tok.type === "half_case_punct" || tok.type === "half_space") {
+      return `<span class="tok-half-wrap"><span class="tok-typed-err">${escapeHtml(tok.typed)}</span><span class="tok-exp">${escapeHtml(tok.ref)}</span><span class="tok-tag">${escapeHtml(tok.tag)}</span></span> `;
+    } else {
+      return `<span class="tok-untyped">${escapeHtml(tok.ref)}</span> `;
+    }
+  }).join("");
+
+  return `
+    <div class="formula-grid">
+      <table class="formula-table">
+        <tr><td>Gross Keystrokes (Characters Typed)</td><td>${ev.grossKeystrokes}</td></tr>
+        <tr><td>Time Taken</td><td>${formatMMSS(ev.timeTakenSec)} (${timeMinStr} min)</td></tr>
+        <tr><td>Backspaces Used</td><td>${ev.backspaces}</td></tr>
+        <tr><td>Total Typed Words / Passage Words</td><td>${ev.totalTypedWords} / ${ev.totalRefWords}</td></tr>
+        <tr><td>Full Mistakes (1.0 each: Wrong ${ev.fullWrong}, Omitted ${ev.fullOmitted}, Extra ${ev.fullExtra})</td><td style="color:#c62828;">${ev.fullMistakes}</td></tr>
+        <tr><td>Half Mistakes (0.5 each: Case ${ev.halfCase}, Punct ${ev.halfPunct}, Space ${ev.halfSpace})</td><td style="color:#e65100;">${ev.halfMistakes}</td></tr>
+        <tr><td><strong>Total Error Words</strong> = Full + (0.5 &times; Half)</td><td style="color:#b71c1c;">${ev.totalErrorWords.toFixed(1)}</td></tr>
+        <tr style="background:#e8f5e9;"><td><strong>Secured Marks (Max 15.00 | ${mult}&times; Penalty)</strong></td><td style="color:#1b5e20; font-size:15px;"><strong>${securedMarks.toFixed(2)} / 15.00</strong></td></tr>
+      </table>
+
+      <div class="formula-steps-box">
+        <div style="font-weight:700; color:#16476b; margin-bottom:6px;">Step-by-Step Official 5-Char Word &amp; Secured Marks Breakdown</div>
+        <div class="formula-step-line">
+          <strong>1. Standard Word Unit:</strong> <span class="formula-code">1 Standard Word = 5 Keystrokes</span> (Passage: ${ev.refKeystrokes} chars)
+        </div>
+        <div class="formula-step-line">
+          <strong>2. Total Error Words:</strong> ${ev.fullMistakes} + (0.5 &times; ${ev.halfMistakes}) = <span class="formula-code">${ev.totalErrorWords.toFixed(1)} error words</span>
+        </div>
+        <div class="formula-step-line">
+          <strong>3. Gross WPM:</strong> (${ev.grossKeystrokes} / 5) / ${timeMinStr} = <span class="formula-code">${ev.grossWpm.toFixed(2)} WPM</span>
+        </div>
+        <div class="formula-step-line">
+          <strong>4. Net WPM (${mult}&times; Penalty):</strong> ((${ev.grossKeystrokes} &minus; (${ev.totalErrorWords.toFixed(1)} &times; ${mult})) / 5) / ${timeMinStr} = (${netKeystrokes.toFixed(1)} / 5) / ${timeMinStr} = <span class="formula-code" style="background:#e8f5e9; color:#1b5e20;">${netWpm.toFixed(2)} WPM</span>
+        </div>
+        <div class="formula-step-line">
+          <strong>5. Accuracy %:</strong> ((${ev.totalTypedWords} &minus; ${ev.totalErrorWords.toFixed(1)}) / ${ev.totalTypedWords || 1}) &times; 100 = <span class="formula-code">${ev.accuracy.toFixed(2)}%</span>
+        </div>
+        <div class="formula-step-line">
+          <strong>6. Secured Marks (Max 15.00):</strong> min(15, (${netKeystrokes.toFixed(1)} / ${ev.refKeystrokes}) &times; 15) = <span class="formula-code" style="background:#e8f5e9; color:#1b5e20; font-size:13px;">${securedMarks.toFixed(2)} / 15.00 Marks</span>
+        </div>
+      </div>
+    </div>
+
+    <div style="font-size:13px; font-weight:700; color:#16476b; margin-bottom:6px;">Post-Test Error Review (Red = Mistake Typed | Green = Expected Word)</div>
+    <div class="diff-legend">
+      <span><strong style="color:#1b5e20;">Green Text</strong> = Correct</span>
+      <span><span class="tok-wrong-wrap"><span class="tok-typed-err">typed</span><span class="tok-exp">expected</span></span> = Wrong Word (1.0 Full)</span>
+      <span><span class="tok-omit-wrap"><span style="color:#c62828;font-weight:700;">[Omitted:</span> <span class="tok-exp">word</span><span style="color:#c62828;font-weight:700;">]</span></span> = Omitted (1.0 Full)</span>
+      <span><span class="tok-extra-wrap">extra</span> = Extra Word (1.0 Full)</span>
+      <span><span class="tok-half-wrap"><span class="tok-typed-err">typed</span><span class="tok-exp">Expected</span><span class="tok-tag">Half</span></span> = Case / Punct / Space (0.5 Half)</span>
+      <span><span class="tok-untyped">Grey Italic</span> = Untyped Passage Remainder</span>
+    </div>
+    <div class="diff-box">${diffHtml}</div>
+  `;
+}
+
+function setPenaltyMultiplier(m) {
+  state.penaltyMultiplier = m;
+  renderScorecardScreen();
+}
+
+function inspectSavedAttempt(attemptNo) {
+  state.viewingAttemptNo = attemptNo;
+  renderScorecardScreen();
+  showToast("Loaded full scorecard & solutions for Attempt #" + attemptNo);
+}
+
+function setMcqFilter(f) {
+  state.mcqFilter = f;
+  const cand = getCandidateRecord(state.candidateId);
+  const attempt = cand.attempts.find(a => a.attemptNo === state.viewingAttemptNo);
+  renderMcqSolutions(attempt);
+}
+
+function renderMcqSolutions(attempt) {
+  const btns = document.querySelectorAll("#mcq-sol-filters .filter-btn");
+  const filterOrder = ["all", "correct", "wrong", "skipped"];
+  const labels = [
+    `All (${MCQ_QUESTIONS.length})`,
+    `Correct (${attempt.mcq.correct})`,
+    `Wrong (${attempt.mcq.wrong})`,
+    `Unattempted (${attempt.mcq.skipped})`
+  ];
+  btns.forEach((b, i) => {
+    b.classList.toggle("active", filterOrder[i] === state.mcqFilter);
+    b.textContent = labels[i];
+  });
+
+  const list = document.getElementById("mcq-solutions-list");
+  const items = MCQ_QUESTIONS.map((q, idx) => {
+    const userAns = attempt.mcq.responses[idx];
+    const status = userAns === null ? "skipped" : (userAns === q.answer ? "correct" : "wrong");
+    if (state.mcqFilter !== "all" && state.mcqFilter !== status) return "";
+
+    const badgeText = status === "correct" ? "Correct (+1.00)" : (status === "wrong" ? "Incorrect (0.00)" : "Unattempted (0.00)");
+    const optsHtml = q.options.map((o, oi) => {
+      let cls = "";
+      let tag = "";
+      if (oi === q.answer) {
+        cls = "is-correct";
+        tag = " &#10003; Correct Answer";
+      } else if (oi === userAns && userAns !== q.answer) {
+        cls = "is-wrong-pick";
+        tag = " &#10007; Your Choice";
+      }
+      if (oi === userAns && userAns === q.answer) {
+        tag = " &#10003; Your Choice (Correct)";
+      }
+      return `<div class="sol-opt ${cls}"><strong>${oi + 1}.</strong> ${escapeHtml(o)} <span style="font-size:11px;">${tag}</span></div>`;
+    }).join("");
+
+    return `
+      <div class="sol-item ${status}">
+        <div class="sol-head">
+          <div><strong>Q.${q.id}</strong> <span class="mcq-topic-pill" style="margin:0 0 0 6px;">${escapeHtml(q.topic)}</span></div>
+          <span class="sol-badge ${status}">${badgeText}</span>
+        </div>
+        <div style="font-size:14px; color:#111; margin-bottom:6px;">${escapeHtml(q.question)}</div>
+        <div class="sol-opts">${optsHtml}</div>
+        <div class="sol-exp"><strong>Explanation:</strong> ${escapeHtml(q.explanation)}</div>
+      </div>
+    `;
+  }).filter(Boolean);
+
+  list.innerHTML = items.length ? items.join("") : `<p style="text-align:center; color:#607d8b; padding:18px;">No questions match this filter.</p>`;
+}
+
+// ==================== RE-ATTEMPT, SWITCH CANDIDATE & DOWNLOAD REPORT ====================
+function reattemptSameCandidate() {
+  // Keeps exact same Unique Candidate ID & Name, does NOT erase prior attempts
+  const rec = getCandidateRecord(state.candidateId);
+  const nextNo = rec && rec.attempts ? rec.attempts.length + 1 : 1;
+  document.getElementById("decl-attempt-badge").textContent = "Attempt #" + nextNo;
+  document.getElementById("decl-checkbox").checked = false;
+  document.getElementById("btn-begin-exam").disabled = true;
+  syncProfileDisplays();
+  showScreen("screen-1b");
+  showToast("Starting fresh Attempt #" + nextNo + " under Candidate ID " + state.candidateId);
+}
+
+function switchCandidateHome() {
+  renderSavedCandidateChips();
+  document.getElementById("cand-name-input").value = state.candidateName;
+  document.getElementById("generated-id-text").textContent = state.candidateId;
+  syncProfileDisplays();
+  showScreen("screen-1a");
+}
+
+function downloadScorecardTxt() {
+  const cand = getCandidateRecord(state.candidateId);
+  if (!cand) return;
+  const a = cand.attempts.find(x => x.attemptNo === state.viewingAttemptNo) || cand.attempts[cand.attempts.length - 1];
+  const t1 = a.typing1.summary;
+  const t2 = a.typing2.summary;
+  const calcM = (s, pNo, m) => {
+    if (m === 10 && typeof s.securedMarks10x === "number") return s.securedMarks10x;
+    if (m !== 10 && typeof s.securedMarks5x === "number") return s.securedMarks5x;
+    const rLen = TYPING_PASSAGES[pNo].text.length;
+    const nKs = Math.max(0, (s.grossKeystrokes || 0) - ((s.totalErrorWords || 0) * m));
+    return rLen > 0 ? Math.min(15, (nKs / rLen) * 15) : 0;
+  };
+  const t1M5 = calcM(t1, 1, 5), t1M10 = calcM(t1, 1, 10);
+  const t2M5 = calcM(t2, 2, 5), t2M10 = calcM(t2, 2, 10);
+  const grand5 = a.mcq.score + t1M5 + t2M5;
+  const grand10 = a.mcq.score + t1M10 + t2M10;
+
+  const lines = [
+    "======================================================================",
+    "  OSSSC CRE (I) 2025 - COMPUTER SKILL TEST (MOCK TEST - 1)",
+    "  TCS iON (digialm.com) Simulator | By Study World (Jagannath Dash)",
+    "======================================================================",
+    `Candidate Name : ${cand.name}`,
+    `Candidate ID   : ${cand.id}`,
+    `Attempt Number : Attempt #${a.attemptNo}`,
+    `Date & Time    : ${a.timestamp}`,
+    "",
+    "----------------------------------------------------------------------",
+    "SECTION 1: COMPUTER KNOWLEDGE MCQ (20 Questions | +1 / 0 Negative)",
+    "----------------------------------------------------------------------",
+    `Score          : ${a.mcq.score} / ${a.mcq.maxScore}`,
+    `Correct        : ${a.mcq.correct}`,
+    `Wrong          : ${a.mcq.wrong}`,
+    `Unattempted    : ${a.mcq.skipped}`,
+    `Accuracy       : ${a.mcq.accuracy.toFixed(2)}%`,
+    `Time Taken     : ${formatMMSS(a.mcq.timeTakenSec)}`,
+    "",
+    "----------------------------------------------------------------------",
+    "SECTION 2: MOCK COMPUTER TYPING 1 (5-Char Standard Word Formula)",
+    "----------------------------------------------------------------------",
+    `Gross Keystrokes  : ${t1.grossKeystrokes}`,
+    `Backspaces Used   : ${t1.backspaces}`,
+    `Time Taken        : ${formatMMSS(t1.timeTakenSec)} (${t1.timeMin.toFixed(2)} min)`,
+    `Typed / Total Wds : ${t1.totalTypedWords} / ${t1.totalRefWords}`,
+    `Full Mistakes     : ${t1.fullMistakes} (Wrong: ${t1.fullWrong}, Omitted: ${t1.fullOmitted}, Extra: ${t1.fullExtra})`,
+    `Half Mistakes     : ${t1.halfMistakes} (Case: ${t1.halfCase}, Punct: ${t1.halfPunct}, Space: ${t1.halfSpace})`,
+    `Total Error Words : ${t1.totalErrorWords.toFixed(1)}`,
+    `Gross WPM         : ${t1.grossWpm.toFixed(2)} WPM`,
+    `Net WPM (5x Rule) : ${t1.netWpm5x.toFixed(2)} WPM`,
+    `Net WPM (10x Rule): ${t1.netWpm10x.toFixed(2)} WPM`,
+    `Accuracy          : ${t1.accuracy.toFixed(2)}%`,
+    `Secured Marks (5x): ${t1M5.toFixed(2)} / 15.00`,
+    `Secured Marks(10x): ${t1M10.toFixed(2)} / 15.00`,
+    "",
+    "----------------------------------------------------------------------",
+    "SECTION 3: MOCK COMPUTER TYPING 2 (5-Char Standard Word Formula)",
+    "----------------------------------------------------------------------",
+    `Gross Keystrokes  : ${t2.grossKeystrokes}`,
+    `Backspaces Used   : ${t2.backspaces}`,
+    `Time Taken        : ${formatMMSS(t2.timeTakenSec)} (${t2.timeMin.toFixed(2)} min)`,
+    `Typed / Total Wds : ${t2.totalTypedWords} / ${t2.totalRefWords}`,
+    `Full Mistakes     : ${t2.fullMistakes} (Wrong: ${t2.fullWrong}, Omitted: ${t2.fullOmitted}, Extra: ${t2.fullExtra})`,
+    `Half Mistakes     : ${t2.halfMistakes} (Case: ${t2.halfCase}, Punct: ${t2.halfPunct}, Space: ${t2.halfSpace})`,
+    `Total Error Words : ${t2.totalErrorWords.toFixed(1)}`,
+    `Gross WPM         : ${t2.grossWpm.toFixed(2)} WPM`,
+    `Net WPM (5x Rule) : ${t2.netWpm5x.toFixed(2)} WPM`,
+    `Net WPM (10x Rule): ${t2.netWpm10x.toFixed(2)} WPM`,
+    `Accuracy          : ${t2.accuracy.toFixed(2)}%`,
+    `Secured Marks (5x): ${t2M5.toFixed(2)} / 15.00`,
+    `Secured Marks(10x): ${t2M10.toFixed(2)} / 15.00`,
+    "",
+    "----------------------------------------------------------------------",
+    "FINAL CONSOLIDATED SKILL TEST SCORECARD (MAX 50.00 MARKS)",
+    "----------------------------------------------------------------------",
+    `Section 1 (MCQ) Marks         : ${a.mcq.score.toFixed(2)} / 20.00`,
+    `Combined Typing Marks (5x)    : ${(t1M5 + t2M5).toFixed(2)} / 30.00`,
+    `Combined Typing Marks (10x)   : ${(t1M10 + t2M10).toFixed(2)} / 30.00`,
+    `Average Net WPM (5x / 10x)    : ${((t1.netWpm5x + t2.netWpm5x) / 2).toFixed(2)} / ${((t1.netWpm10x + t2.netWpm10x) / 2).toFixed(2)} WPM`,
+    `Average Typing Accuracy       : ${((t1.accuracy + t2.accuracy) / 2).toFixed(2)}%`,
+    `GRAND TOTAL (5x Rule)         : ${grand5.toFixed(2)} / 50.00 (${(grand5 * 2).toFixed(1)}%) — ${grand5 >= 20 ? 'QUALIFIED' : 'NOT QUALIFIED'}`,
+    `GRAND TOTAL (10x Rule)        : ${grand10.toFixed(2)} / 50.00 (${(grand10 * 2).toFixed(1)}%) — ${grand10 >= 20 ? 'QUALIFIED' : 'NOT QUALIFIED'}`,
+    "======================================================================",
+    "Generated by Study World (Jagannath Dash) — OSSSC CRE (I) 2025 CST Simulator"
+  ].join("\n");
+
+  const blob = new Blob([lines], { type: "text/plain;charset=utf-8" });
+  const url = URL.createObjectURL(blob);
+  const link = document.createElement("a");
+  link.href = url;
+  link.download = `OSSSC_CST_Report_${cand.id}_Attempt${a.attemptNo}.txt`;
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+  URL.revokeObjectURL(url);
+}
+
+// ==================== UTILITY MODALS (QUESTION PAPER & INSTRUCTIONS) ====================
+function openQuestionPaperModal() {
+  const body = MCQ_QUESTIONS.map(q => `
+    <div style="border-bottom:1px solid #e0e7ed; padding:10px 0;">
+      <div style="font-weight:700; color:#16476b; margin-bottom:4px;">Q.${q.id} [${escapeHtml(q.topic)}]</div>
+      <div style="margin-bottom:6px;">${escapeHtml(q.question)}</div>
+      <ol style="padding-left:20px; color:#37474f; font-size:13px;">
+        ${q.options.map(o => `<li>${escapeHtml(o)}</li>`).join("")}
+      </ol>
+    </div>
+  `).join("");
+  openModal(
+    "Complete Question Paper — Section 1: Computer Skill MCQ",
+    body,
+    `<button type="button" class="tcs-btn tcs-btn-primary" onclick="closeModal()">Close</button>`,
+    true
+  );
+}
+
+function openInstructionsModal() {
+  openModal(
+    "Exam Instructions — OSSSC CRE (I) 2025 Skill Test",
+    `<ul style="padding-left:20px; line-height:1.7;">
+      <li><strong>Section 1 (Computer Skill MCQ — 20 Marks):</strong> 20 Questions | 20 Minutes | +1.00 for correct, 0 negative marking. Click <em>Save &amp; Next</em> to save an answer. Both <em>Answered</em> and <em>Answered &amp; Marked for Review</em> are evaluated.</li>
+      <li><strong>Section 2 (Typing Test 1 — 15 Marks):</strong> 15 Minutes | Plain-text passage (~2,546 characters / 424 words). Marks awarded proportionally on Net Valid Keystrokes.</li>
+      <li><strong>Section 3 (Typing Test 2 — 15 Marks):</strong> 15 Minutes | Plain-text passage (~2,542 characters / 420 words). Marks awarded proportionally on Net Valid Keystrokes.</li>
+      <li><strong>Total Marks &amp; Qualifying Cut-off:</strong> 50.00 Marks Total (20 + 15 + 15). Minimum 40% (20.00 / 50.00) required to qualify.</li>
+      <li><strong>Real Exam Mode:</strong> No word highlighting or error hints are shown while typing. Copy, Cut, and Paste are disabled.</li>
+      <li><strong>Auto-Submit:</strong> Each section timer automatically advances/submits when it hits 00:00.</li>
+    </ul>`,
+    `<button type="button" class="tcs-btn tcs-btn-primary" onclick="closeModal()">Close</button>`,
+    false
+  );
+}
+
+function openModal(title, bodyHtml, footerHtml, wide) {
+  document.getElementById("modal-title").textContent = title;
+  document.getElementById("modal-body").innerHTML = bodyHtml;
+  document.getElementById("modal-footer").innerHTML = footerHtml;
+  document.getElementById("modal-box").classList.toggle("wide", !!wide);
+  document.getElementById("modal-backdrop").classList.remove("hidden");
+}
+
+function closeModal() {
+  document.getElementById("modal-backdrop").classList.add("hidden");
+}
+
+let toastTimer = null;
+function showToast(msg) {
+  const el = document.getElementById("toast-msg");
+  el.textContent = msg;
+  el.classList.remove("hidden");
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => el.classList.add("hidden"), 2600);
+}
+
+function formatMMSS(sec) {
+  const s = Math.max(0, Math.floor(sec || 0));
+  return String(Math.floor(s / 60)).padStart(2, "0") + ":" + String(s % 60).padStart(2, "0");
+}
+
+function escapeHtml(str) {
+  return String(str)
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#39;");
+}
+
+window.addEventListener("DOMContentLoaded", initApp);
+</script>
+</body>
+</html>
